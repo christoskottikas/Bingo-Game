@@ -23,4 +23,8 @@ public interface UserInterface {
     
     public boolean checkLogin(String username,String password);
     
+    public User findByEmail(String email);
+    
+    public boolean checkEmail(String email);
+    
 }

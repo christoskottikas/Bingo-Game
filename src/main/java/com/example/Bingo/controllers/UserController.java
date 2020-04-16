@@ -54,7 +54,15 @@ public class UserController {
 
                 return "redirect:/preregister";
 
-            } else {
+            } 
+            if (ui.checkEmail(ud.getEmail())){
+                
+                sc.setAttribute("wrongEmail", "email already exists");
+                
+                return "redirect:/preregister";
+            }
+            
+            else {
 
                 User u = new User();
                 u.setFirstname(ud.getFirstName());
@@ -63,6 +71,7 @@ public class UserController {
                 u.setPassword(passwordEncoder.encode(ud.getPassword()));
                 u.setEmail(ud.getEmail());
                 u.setBalance(200);
+               
                 u.setDateofbirth(ud.getDateOfBirth());
 
                 ui.insertUser(u);
@@ -98,7 +107,7 @@ public class UserController {
 
         if (ui.checkLogin(ud.getUsername(), ud.getPassword())) {
 
-            hs.setAttribute("user", user);
+            hs.setAttribute("u", user);
 
             return "successlogin";
 
