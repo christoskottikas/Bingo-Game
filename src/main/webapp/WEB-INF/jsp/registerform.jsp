@@ -43,7 +43,7 @@
                 <form:input  type="text" id="Date" path="dateOfBirth" name="dateOfBirth" />
                 <form:errors path="dateOfBirth"/><br><br>
                 <form:label path="email">Email</form:label><br>
-                <form:input  type="email" path="email" name="email"/>
+                <form:input  type="email" path="email" name="email"/> <span class ="error"><b>${wrongEmail}</b></span>
                 <form:errors path="email"/><br><br>
 
             <input type="submit" value="Register"/>
@@ -61,7 +61,10 @@
 
 $(document).ready(function() {
 $(function() {
-$("#Date").datepicker();
+$("#Date").datepicker({
+    maxDate: "-18y",
+    minDate: new Date(1930, 6 , 31)
+});
 });
 
 $(function() {

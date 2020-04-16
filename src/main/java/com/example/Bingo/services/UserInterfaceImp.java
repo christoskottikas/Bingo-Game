@@ -75,5 +75,23 @@ public class UserInterfaceImp implements UserInterface{
         }
         return false;
     }
+
+    @Override
+    public User findByEmail(String email) {
+        
+        return  ur.findByEmail(email);
+    }
     
+     @Override
+    public boolean checkEmail(String email) {
+       
+        User u =  ur.findByEmail(email);
+       
+         if(u != null &&  email.equals(u.getEmail())){
+         
+         return true;
+         }
+         else
+             return false;
+    }
 }

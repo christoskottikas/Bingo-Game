@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Welcome</h1>
+        <h1>Welcome  ${u.firstname} ${u.lastname} ${u.email} ${u.balance} </h1>
     </body>
 </html>
