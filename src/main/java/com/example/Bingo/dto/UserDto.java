@@ -20,6 +20,8 @@ public class UserDto {
 
     public UserDto() {
     }
+    
+    
 
     public String getFirstName() {
         return firstName;
@@ -45,6 +47,9 @@ public class UserDto {
         this.dateOfBirth = dateOfBirth;
     }
 
+    
+
+   
     public String getUsername() {
         return username;
     }

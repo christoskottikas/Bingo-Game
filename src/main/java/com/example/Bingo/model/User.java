@@ -26,145 +26,149 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author Ro Mario
+ */
 @Entity
 @Table(name = "user")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-    @NamedQuery(name = "User.findByUId", query = "SELECT u FROM User u WHERE u.uId = :uId"),
-    @NamedQuery(name = "User.findByUFirstname", query = "SELECT u FROM User u WHERE u.uFirstname = :uFirstname"),
-    @NamedQuery(name = "User.findByULastname", query = "SELECT u FROM User u WHERE u.uLastname = :uLastname"),
-    @NamedQuery(name = "User.findByUDateofbirth", query = "SELECT u FROM User u WHERE u.uDateofbirth = :uDateofbirth"),
-    @NamedQuery(name = "User.findByUUsername", query = "SELECT u FROM User u WHERE u.uUsername = :uUsername"),
-    @NamedQuery(name = "User.findByUPassword", query = "SELECT u FROM User u WHERE u.uPassword = :uPassword"),
-    @NamedQuery(name = "User.findByUEmail", query = "SELECT u FROM User u WHERE u.uEmail = :uEmail"),
-    @NamedQuery(name = "User.findByUBalance", query = "SELECT u FROM User u WHERE u.uBalance = :uBalance")})
+    @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
+    @NamedQuery(name = "User.findByFirstname", query = "SELECT u FROM User u WHERE u.firstname = :firstname"),
+    @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname"),
+    @NamedQuery(name = "User.findByDateofbirth", query = "SELECT u FROM User u WHERE u.dateofbirth = :dateofbirth"),
+    @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
+    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
+    @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
+    @NamedQuery(name = "User.findByBalance", query = "SELECT u FROM User u WHERE u.balance = :balance")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "u_id")
-    private Integer uId;
+    @Column(name = "id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
-    @Column(name = "u_firstname")
-    private String uFirstname;
+    @Column(name = "firstname")
+    private String firstname;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
-    @Column(name = "u_lastname")
-    private String uLastname;
+    @Column(name = "lastname")
+    private String lastname;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "u_dateofbirth")
-    @Temporal(TemporalType.DATE)
-    private Date uDateofbirth;
+    @Column(name = "dateofbirth")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateofbirth;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "u_username")
-    private String uUsername;
+    @Column(name = "username")
+    private String username;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "u_password")
-    private String uPassword;
+    @Column(name = "password")
+    private String password;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "u_email")
-    private String uEmail;
+    @Column(name = "email")
+    private String email;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "u_balance")
-    private int uBalance;
+    @Column(name = "balance")
+    private int balance;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkuId")
     private Collection<Stats> statsCollection;
 
     public User() {
     }
 
-    public User(Integer uId) {
-        this.uId = uId;
+    public User(Integer id) {
+        this.id = id;
     }
 
-    public User(Integer uId, String uFirstname, String uLastname, Date uDateofbirth, String uUsername, String uPassword, String uEmail, int uBalance) {
-        this.uId = uId;
-        this.uFirstname = uFirstname;
-        this.uLastname = uLastname;
-        this.uDateofbirth = uDateofbirth;
-        this.uUsername = uUsername;
-        this.uPassword = uPassword;
-        this.uEmail = uEmail;
-        this.uBalance = uBalance;
+    public User(Integer id, String firstname, String lastname, Date dateofbirth, String username, String password, String email, int balance) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.dateofbirth = dateofbirth;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.balance = balance;
     }
 
-    public Integer getUId() {
-        return uId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUId(Integer uId) {
-        this.uId = uId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUFirstname() {
-        return uFirstname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setUFirstname(String uFirstname) {
-        this.uFirstname = uFirstname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getULastname() {
-        return uLastname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setULastname(String uLastname) {
-        this.uLastname = uLastname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public Date getUDateofbirth() {
-        return uDateofbirth;
+    public Date getDateofbirth() {
+        return dateofbirth;
     }
 
-    public void setUDateofbirth(Date uDateofbirth) {
-        this.uDateofbirth = uDateofbirth;
+    public void setDateofbirth(Date dateofbirth) {
+        this.dateofbirth = dateofbirth;
     }
 
-    public String getUUsername() {
-        return uUsername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUUsername(String uUsername) {
-        this.uUsername = uUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUPassword() {
-        return uPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUPassword(String uPassword) {
-        this.uPassword = uPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getUEmail() {
-        return uEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUEmail(String uEmail) {
-        this.uEmail = uEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getUBalance() {
-        return uBalance;
+    public int getBalance() {
+        return balance;
     }
 
-    public void setUBalance(int uBalance) {
-        this.uBalance = uBalance;
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     @XmlTransient
@@ -179,7 +183,7 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (uId != null ? uId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -190,7 +194,7 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        if ((this.uId == null && other.uId != null) || (this.uId != null && !this.uId.equals(other.uId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -198,7 +202,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.Bingo.model.User[ uId=" + uId + " ]";
+        return "com.example.Bingo.model.User[ id=" + id + " ]";
     }
     
 }

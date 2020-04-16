@@ -21,7 +21,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
+/**
+ *
+ * @author Ro Mario
+ */
 @Entity
 @Table(name = "stats")
 @XmlRootElement
@@ -45,7 +48,7 @@ public class Stats implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "s_games")
     private String sGames;
-    @JoinColumn(name = "fku_id", referencedColumnName = "u_id")
+    @JoinColumn(name = "fku_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User fkuId;
 

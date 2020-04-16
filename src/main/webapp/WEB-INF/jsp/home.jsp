@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+         <div><a href="prelogin" >Already a member? Login</a></div>
+            <div><a href="preregister" >Not a member? Register now</a></div>
     </body>
 </html>
