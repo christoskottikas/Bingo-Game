@@ -6,7 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,11 +16,6 @@
         
         
         <title>JSP Page</title>
-        <style>
-            .error{
-                color: red;
-            }
-        </style>
     </head>
     <body>
         <h1>Register form : </h1>
