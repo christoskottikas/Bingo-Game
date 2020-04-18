@@ -3,7 +3,6 @@ package com.example.Bingo.controllers;
 import com.example.Bingo.dto.UserDto;
 import com.example.Bingo.model.User;
 import com.example.Bingo.services.UserInterfaceImp;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,6 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    ServletContext sc;
-
-    @Autowired
     UserInterfaceImp ui;
 
     @GetMapping("/")
@@ -36,8 +32,7 @@ public class UserController {
     public String preRegisterUser(ModelMap mm) {
 
         UserDto userdto = new UserDto();
-
-        mm.addAttribute("UserDto", userdto);
+        mm.addAttribute("RegisterDto", userdto);
 
         return "registerform";
 
@@ -50,19 +45,19 @@ public class UserController {
 
             if (ui.checkUsername(ud.getUsername())) {
 
-                sc.setAttribute("wrongUsername", "username already exists");
+                br.rejectValue("username", "error.registerUsername");
+                ud.setDateOfBirth(null);
 
-                return "redirect:/preregister";
+                return "registerform";
 
-            } 
-            if (ui.checkEmail(ud.getEmail())){
-                
-                sc.setAttribute("wrongEmail", "email already exists");
-                
-                return "redirect:/preregister";
             }
-            
-            else {
+            if (ui.checkEmail(ud.getEmail())) {
+
+                br.rejectValue("email", "error.email");
+                ud.setDateOfBirth(null);
+
+                return "registerform";
+            } else {
 
                 User u = new User();
                 u.setFirstname(ud.getFirstName());
@@ -71,7 +66,7 @@ public class UserController {
                 u.setPassword(passwordEncoder.encode(ud.getPassword()));
                 u.setEmail(ud.getEmail());
                 u.setBalance(200);
-               
+
                 u.setDateofbirth(ud.getDateOfBirth());
 
                 ui.insertUser(u);
@@ -80,12 +75,13 @@ public class UserController {
 
         } else if (!ud.getPassword().equals(ud.getPasswordConfirm())) {
 
-            sc.setAttribute("wrongPassword", "passwords do not match");
+            br.rejectValue("password", "error.password");
+            ud.setDateOfBirth(null);
 
-            return "redirect:/preregister";
-        }
-        else if (br.hasErrors()){
-            
+            return "registerform";
+
+        } else if (br.hasErrors()) {
+
             return "redirect:/preregister";
         }
         return "redirect:/preregister";
@@ -97,11 +93,12 @@ public class UserController {
 
         UserDto rd = new UserDto();
         mm.addAttribute("user", rd);
+
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("user") UserDto ud, ModelMap mm, HttpSession hs) {
+    public String login(@ModelAttribute("user") UserDto ud, ModelMap mm, HttpSession hs, BindingResult br) {
 
         User user = ui.findByUsername(ud.getUsername());
 
@@ -112,13 +109,18 @@ public class UserController {
             return "successlogin";
 
         } else {
-            
-            sc.setAttribute("message", "wrong username or password");
-            
-            return "redirect:/prelogin";
-            
+
+            br.rejectValue("username", "error.userName");
+
+            return "login";
+
         }
 
-       
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession hs) {
+        hs.invalidate();
+        return "redirect:/prelogin";
     }
 }
