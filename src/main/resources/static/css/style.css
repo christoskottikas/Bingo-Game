@@ -1,0 +1,120 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 17, 2020, 3:17:54 PM
+    Author     : Nzxt
+*/
+
+html {
+    scroll-behavior: smooth;
+  }
+
+
+#section1{
+
+    background-color: #DBB1BC;
+    color: #B0FFFF;
+}
+#section2{
+
+    background-color:#B0FFFF;
+    color: #8F95D3;
+}
+#section3{
+
+    background-color: #8F95D3;
+    color: #FFA0B0;
+}
+
+
+#loginpage{
+
+    background-color: #8F95D3;
+    color:#B0FFFF;
+}
+
+#registerpage{
+
+    background-color: #FFA0B0;
+    color:  #8F95D3;
+}
+
+.btn-outline-info1 {
+
+    
+    border-color: #B0FFFF;
+    color: #B0FFFF;
+
+  
+}
+
+.btn-outline-info1:hover {
+background: #B0FFFF;
+color: white;
+}
+
+.btn-outline-info2 {
+
+    
+        border-color: #8F95D3;
+        color: #8F95D3;
+      
+}
+
+.btn-outline-info2:hover {
+    background: #8F95D3;
+    color: white;
+  }
+
+  .btn-outline-info3 {
+
+    
+    border-color: #FFA0B0;
+    color: #FFA0B0;
+  
+}
+
+.btn-outline-info3:hover {
+background: #FFA0B0;
+color: white;
+}
+#regpic, #loginpic {
+    animation-duration: 3s;
+    animation-name: slideleft;
+  }
+
+  #formreg, #formlogin {
+    animation-duration: 3s;
+    animation-name: slideright;
+  }
+
+
+  
+  @keyframes slideleft {
+    from {
+      margin-left: 250%;
+      width: 300%; 
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
+  @keyframes slideright {
+    from {
+      margin-top: 250%;
+      width: 300%; 
+    }
+  
+    to {
+      margin-top: 0%;
+      width: 100%;
+    }
+  }
+  .error{
+                color: red;
+            }

@@ -8,11 +8,60 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="style.css" rel="stylesheet" type="text/css"/>
-        <title>JSP Page</title>
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>Spring Boot WebSocket Chat Application | CalliCoder</title>
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     </head>
-    <body>
-        <h1>Welcome  ${u.firstname} ${u.lastname} ${u.email} ${u.balance} </h1>
+    <body background="18.jpg"
+          style="background-position: center; background-repeat: no-repeat; background-size: cover;">
+        <noscript>
+        <h2>Sorry! Your browser doesn't support Javascript</h2>
+        </noscript>
+
+        <div id="username-page">
+            <div class="username-page-container">
+                <h1 class="title" style="color:lightsalmon">Welcome, ${u.firstname} ${u.lastname}</h1>
+                <form id="usernameForm" name="usernameForm">
+                    <div class="form-group">
+                        <div><h2>Your chat name is: <span id ="user">${u.username}</span></h2></div>
+                        <div><h3>Your balance is: ${u.balance} <i class="fas fa-coins" style="color:darkgoldenrod"></i></h3></div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="accent username-submit">Start
+                            Playing</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="chat-page" class="hidden">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2>Bingo Global Chat Box</h2>
+                </div>
+                <div class="connecting">Connecting...</div>
+                <ul id="messageArea">
+
+                </ul>
+                <form id="messageForm" name="messageForm" nameForm="messageForm">
+                    <div class="form-group">
+                        <div class="input-group clearfix">
+                            <input type="text" id="message" placeholder="Type a message..."
+                                   autocomplete="off" class="form-control" />
+                            <button type="submit" class="primary">Send</button>
+                        </div>
+                    </div>
+                </form>
+<!--                <a href="/logout">leave</a>-->
+            </div>
+        </div>
+
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+        <script src="/js/main.js"></script>
     </body>
 </html>
