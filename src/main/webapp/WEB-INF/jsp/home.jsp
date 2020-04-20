@@ -11,12 +11,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>It's time for BINGO!</title>
-    <link rel="icon" href="icon.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
+    <link rel="icon" href="img/icon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet"/>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
   </head>
    <body data-spy="scroll" data-target="#navbar1" data-offset="60">
    
@@ -28,7 +27,7 @@
                 <div class="col-12">
 
                     <div class="text-center m-0 vh-100 d-flex flex-column justify-content-center ">
-                      <img class="img-fluid" src="homepic.png" alt="Welcome to BINGO">
+                      <img class="img-fluid" src="img/homepic.png" alt="Welcome to BINGO">
                         <p class="lead">A game of chance!</p>
                         <div class="row">
                             <div class="col-lg-4 col-sm-6 mx-auto">

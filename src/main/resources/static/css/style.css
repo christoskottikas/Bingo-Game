@@ -42,6 +42,14 @@ html {
     color:  #8F95D3;
 }
 
+
+#regsuccess{
+
+  background-color: #8F95D3;
+  color:#D3C4E3
+}
+
+
 .btn-outline-info1 {
 
     
@@ -81,14 +89,32 @@ color: white;
 background: #FFA0B0;
 color: white;
 }
-#regpic, #loginpic {
+
+
+
+.btn-outline-info4 {
+
+    
+    border-color: #D3C4E3;
+    color:  #D3C4E3;
+  
+}
+
+.btn-outline-info4:hover {
+background:  #D3C4E3;
+color: white;
+}
+
+
+
+#regpic, #loginpic, #regbanner, #regbanner3 {
     animation-duration: 3s;
     animation-name: slideleft;
   }
 
-  #formreg, #formlogin {
+  #formreg, #formlogin, #regbanner2 {
     animation-duration: 3s;
-    animation-name: slideright;
+    animation-name: slidetop;
   }
 
 
@@ -104,7 +130,7 @@ color: white;
       width: 100%;
     }
   }
-  @keyframes slideright {
+  @keyframes slidetop {
     from {
       margin-top: 250%;
       width: 300%; 
@@ -118,3 +144,11 @@ color: white;
   .error{
                 color: red;
             }
+            
+    .field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+}

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : registerform
-    Created on : Apr 15, 2020, 7:46:33 PM
-    Author     : Ro Mario
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -13,12 +8,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bingo Register Page</title>
-   <link rel="icon" href="sitecon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="sitecon.ico" type="image/x-icon" />
+   <link rel="icon" href="img/icon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" type="text/css"/>
-        
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
    </head>
     <body data-spy="scroll" data-target="#navbar1" data-offset="60">
    
@@ -34,40 +28,59 @@
                         <h1>Register</h1>
                         <div class="row">
                             <div class="col-lg-10 col-sm-10 mx-auto">
-                                <div>
+                               
         
         
         
-        <div>
-            <form:form method="POST" action="/register" modelAttribute="RegisterDto" name="registration" class="text-center" id="formreg"> 
+                                    <div>
+                <form:form method="POST" action="/register" modelAttribute="RegisterDto" name="registration" class="text-center" id="formreg"> 
+                    <div class="form-group row">
                 <form:label path="firstName">First Name</form:label> <br> 
                 <form:input type="text" path="firstName" name="firstName" pattern="^[a-zA-Z]+$" class="form-control" placeholder="Enter your first name" />
                 <form:errors path="firstName"/><br>
+                    </div>
+                    <div class="form-group row">
                 <form:label path="lastName">Last Name</form:label><br>
                 <form:input type="text" path="lastName" name="lastName" pattern="^[a-zA-Z]+$" class="form-control" placeholder="Enter your last name"/>
                 <form:errors path="lastName"/><br>
+                                    </div>
+
+                <div class="form-group row">
                 <form:label path="username">Username</form:label><br>
                 <form:input type="text" path="username" name="username" class="form-control" placeholder="Type your Username" />  
                 <form:errors class="error" path="username"/><br>
+                                    </div>
+
+                <div class="form-group row">
                 <form:label path="password">Password</form:label><br>
                 <form:input type="password" path="password" id="pass1" name="password" class="form-control" placeholder="Password"/>  
                 <form:errors class="error" path="password"/><br>
+                                    </div>
+
+                <div class="form-group row">
                 <form:label path="passwordConfirm">Retype Password</form:label><br>
                 <form:input type="password" path="passwordConfirm" id="pass2"  name="passwordConfirm" class="form-control" placeholder="Retype Password"/> 
                 <form:errors path="passwordConfirm"/><br>
+                                    </div>
+
+                <div class="form-group row">
                 <form:label path="dateOfBirth">Date of birth</form:label><br>
                 <form:input type="text" id="Date" path="dateOfBirth" name="dateOfBirth" class="form-control" placeholder="Select your Date of Birth"/>
                 <form:errors path="dateOfBirth"/><br>
+                                    </div>
+
+                <div class="form-group row">
                 <form:label path="email">Email</form:label><br>
                 <form:input type="email" path="email" name="email" class="form-control" placeholder="Enter your email"/> 
                 <form:errors class="error" path="email"/><br>
+                    </div>
 
             <input type="submit" class="btn btn-outline-info2" value="Register"/>
             </form:form>
         </div>
                                     
                                     
-        </div>
+        
                             </div>
                         </div>
     
@@ -77,7 +90,7 @@
                 <div class="col-6">
                     <div class="col-lg-10 col-sm-10 mx-auto">
                         <div class="text-center m-0 vh-100 d-flex flex-column justify-content-center ">
-                    <img class="img-fluid" src="registerpic.png" alt="Registration Picture" id="regpic">
+                    <img class="img-fluid" src="img/registerpic.png" alt="Registration Picture" id="regpic">
                     </div>
                 </div>
                 </div>

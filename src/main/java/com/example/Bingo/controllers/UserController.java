@@ -118,7 +118,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String logout(HttpSession hs) {
         hs.invalidate();
         return "redirect:/prelogin";
