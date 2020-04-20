@@ -14,11 +14,11 @@
         <title>Bingo Login Page</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet"/>
     
-        <link rel="icon" href="sitecon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="sitecon.ico" type="image/x-icon" />
+         <link rel="icon" href="img/icon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon" />
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
-
-        <link href="style.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
 
 
@@ -40,23 +40,24 @@
 
                                         <div>
 
-                                            <form:form method="POST" action="/login" modelAttribute="user" id="formlogin">
+                                <form:form method="POST" action="/login" modelAttribute="user" id="formlogin">
                                                 <div class="form-group" >
                                                     <form:label path="username">Username</form:label><br>
-                                                    <form:input  type="text" class="form-control" path="username" placeholder="Enter Username"/> 
+                                                    <form:input  type="text" class="form-control" path="username" placeholder="Enter Username" id="username"/> 
                                                     <form:errors class="error" path="username"/>
                                                 </div>
                                                 <div class="form-group">
                                                     <form:label path="password">Password</form:label><br>
-                                                    <form:input type="password" class="form-control" path="password" placeholder="Password" /> 
-                                                    <form:errors path="password"/>
+                                                    <form:input id="password-field" type="password" class="form-control" path="password" placeholder="Password" /> 
+                                                    <span style="color: #333" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password">
+                                                        <form:errors path="password"/>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                                                    <input type="checkbox" class="form-check-input" id="rememberMe" value="lsRememberMe">
+                                                    <label class="form-check-label" for="rememberMe">Remember Me</label>
                                                 </div>
                                                 <br>
-                                                <button type="submit" class="btn btn-outline-info1">Login!</button>
+                                                <button type="submit" class="btn btn-outline-info1" onclick="lsRememberMe()">Login!</button>
                                             </form:form>
 
 
@@ -71,7 +72,7 @@
                     <div class="col-6">
                         <div class="col-lg-10 col-sm-10 mx-auto">
                             <div class="text-center m-0 vh-100 d-flex flex-column justify-content-center ">
-                                <img class="img-fluid" src="loginpic.png" alt="Login Picture" id="loginpic">
+                                <img class="img-fluid" src="img/loginpic.png" alt="Login Picture" id="loginpic">
                             </div>
                         </div>
                     </div>
@@ -117,7 +118,9 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="scripts.js"></script>
+       
+        
+         <script src="/js/login.js"></script>
     </body>
 </html> 
 

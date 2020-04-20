@@ -1,0 +1,101 @@
+/* Make the letter b column class elements (balls or
+   squares) have a white border and a pale red
+   color. */
+   .b {
+    fill: #ffa0b0;
+    stroke-width: 5;
+    stroke: white;
+  }
+  
+  /* Make the letter i column class elements (balls or
+     squares) have a white border and a pale purple
+     color. */
+  .i {
+    fill: #ffb0ff;
+    stroke-width: 5;
+    stroke: white;
+  }
+  
+  /* Make the letter n column class elements (balls or
+     squares) have a white border and a pale blue
+     color. */
+  .n {
+    fill: #a0b0ff;
+    stroke-width: 5;
+    stroke: white;
+  }
+  
+  /* Make the letter g column class elements (balls or
+     squares) have a white border and a pale aqua
+     color. */
+  .g {
+    fill: #b0ffff;
+    stroke-width: 5;
+    stroke: white;
+  }
+  
+  /* Make the o class elements (balls or rectangles)
+     have a white border and a pale green color. */
+  .o {
+    fill: #b0ffa0;
+    stroke-width: 5;
+    stroke: white;
+  }
+  
+  /* Make the h(idden) class elements (balls) have a
+     white border and a white color. Used to hide them
+     before they are called. */
+  .h {
+    fill: white;
+    stroke-width: 5;
+    stroke: white;
+  }
+  
+  /* Make the t(ext) class elements (text) written in
+     black relatively large characters. */
+  .t {
+    fill: black;
+    font-size: 30px;
+  }
+  
+  /* Make the e(rror) class elements (text) written in
+     red relatively large characters. Used to show
+     numbers daubbed that haven't been called. */
+  .e {
+
+    fill: red;
+    font-size: 30px;
+
+    
+  }
+  
+  /* Make the v(erified) class elements (text) written
+     in white relatively large characters. Used to show
+     correctly daubbed numbers or to hide the numbers
+     on top of hidden balls (class h.) */
+  .v {
+    fill: white;
+    font-size: 30px;
+
+  }
+  
+  /* Left table data should be left justified third of
+     area under the balls. */
+  #left {
+    text-align: left;
+    width: 100px;
+  }
+  
+  /* Center table data should be centered in second
+     third of area under the balls. */
+  #center {
+    text-align: center;
+    width: 100px;
+  }
+  
+  /* Right table data should be right justified in final
+     third of area under the balls. */
+  #right {
+    text-align: right;
+    width: 100px;
+  }
