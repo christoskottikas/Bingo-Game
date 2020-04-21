@@ -6,7 +6,6 @@
 package com.example.Bingo.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -17,14 +16,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -76,7 +75,7 @@ public class User implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "password")
     private String password;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -86,8 +85,8 @@ public class User implements Serializable {
     @NotNull
     @Column(name = "balance")
     private int balance;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkuId")
-    private Collection<Stats> statsCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Stats stats;
 
     public User() {
     }
@@ -171,13 +170,12 @@ public class User implements Serializable {
         this.balance = balance;
     }
 
-    @XmlTransient
-    public Collection<Stats> getStatsCollection() {
-        return statsCollection;
+    public Stats getStats() {
+        return stats;
     }
 
-    public void setStatsCollection(Collection<Stats> statsCollection) {
-        this.statsCollection = statsCollection;
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
 
     @Override

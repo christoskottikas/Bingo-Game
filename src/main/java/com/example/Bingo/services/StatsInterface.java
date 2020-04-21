@@ -5,7 +5,13 @@
  */
 package com.example.Bingo.services;
 
+import com.example.Bingo.model.Stats;
+
+
 
 public interface StatsInterface {
+    
+    public void insertStats (Stats st);
+    
     
 }

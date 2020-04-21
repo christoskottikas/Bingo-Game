@@ -13,12 +13,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -30,76 +29,75 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Stats.findAll", query = "SELECT s FROM Stats s"),
-    @NamedQuery(name = "Stats.findBySId", query = "SELECT s FROM Stats s WHERE s.sId = :sId"),
-    @NamedQuery(name = "Stats.findBySWins", query = "SELECT s FROM Stats s WHERE s.sWins = :sWins"),
-    @NamedQuery(name = "Stats.findBySGames", query = "SELECT s FROM Stats s WHERE s.sGames = :sGames")})
+    @NamedQuery(name = "Stats.findByWins", query = "SELECT s FROM Stats s WHERE s.wins = :wins"),
+    @NamedQuery(name = "Stats.findByGames", query = "SELECT s FROM Stats s WHERE s.games = :games"),
+    @NamedQuery(name = "Stats.findByStatsId", query = "SELECT s FROM Stats s WHERE s.statsId = :statsId")})
 public class Stats implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Column(name = "wins")
+    private Integer wins;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "games")
+    private int games;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "s_id")
-    private Integer sId;
-    @Column(name = "s_wins")
-    private Integer sWins;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "s_games")
-    private String sGames;
-    @JoinColumn(name = "fku_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private User fkuId;
+    @Column(name = "stats_id")
+    private Integer statsId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne(optional = false)
+    private User userId;
 
     public Stats() {
     }
 
-    public Stats(Integer sId) {
-        this.sId = sId;
+    public Stats(Integer statsId) {
+        this.statsId = statsId;
     }
 
-    public Stats(Integer sId, String sGames) {
-        this.sId = sId;
-        this.sGames = sGames;
+    public Stats(Integer statsId, int games) {
+        this.statsId = statsId;
+        this.games = games;
     }
 
-    public Integer getSId() {
-        return sId;
+    public Integer getWins() {
+        return wins;
     }
 
-    public void setSId(Integer sId) {
-        this.sId = sId;
+    public void setWins(Integer wins) {
+        this.wins = wins;
     }
 
-    public Integer getSWins() {
-        return sWins;
+    public int getGames() {
+        return games;
     }
 
-    public void setSWins(Integer sWins) {
-        this.sWins = sWins;
+    public void setGames(int games) {
+        this.games = games;
     }
 
-    public String getSGames() {
-        return sGames;
+    public Integer getStatsId() {
+        return statsId;
     }
 
-    public void setSGames(String sGames) {
-        this.sGames = sGames;
+    public void setStatsId(Integer statsId) {
+        this.statsId = statsId;
     }
 
-    public User getFkuId() {
-        return fkuId;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setFkuId(User fkuId) {
-        this.fkuId = fkuId;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (sId != null ? sId.hashCode() : 0);
+        hash += (statsId != null ? statsId.hashCode() : 0);
         return hash;
     }
 
@@ -110,7 +108,7 @@ public class Stats implements Serializable {
             return false;
         }
         Stats other = (Stats) object;
-        if ((this.sId == null && other.sId != null) || (this.sId != null && !this.sId.equals(other.sId))) {
+        if ((this.statsId == null && other.statsId != null) || (this.statsId != null && !this.statsId.equals(other.statsId))) {
             return false;
         }
         return true;
@@ -118,7 +116,7 @@ public class Stats implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.Bingo.model.Stats[ sId=" + sId + " ]";
+        return "com.example.Bingo.model.Stats[ statsId=" + statsId + " ]";
     }
     
 }
