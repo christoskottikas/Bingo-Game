@@ -94,4 +94,10 @@ public class UserInterfaceImp implements UserInterface{
          else
              return false;
     }
+
+    @Override
+    public void deleteUser(User u) {
+        
+        ur.delete(u);
+    }
 }

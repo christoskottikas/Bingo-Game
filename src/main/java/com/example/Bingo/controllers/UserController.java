@@ -5,11 +5,14 @@ import com.example.Bingo.model.Stats;
 import com.example.Bingo.model.User;
 import com.example.Bingo.services.StatsInterfaceImp;
 import com.example.Bingo.services.UserInterfaceImp;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -117,6 +120,16 @@ public class UserController {
     public String login(@ModelAttribute("user") UserDto ud, ModelMap mm, HttpSession hs, BindingResult br) {
 
         User user = ui.findByUsername(ud.getUsername());
+        
+        if(ud.getUsername().equalsIgnoreCase("admin") && ud.getPassword().equalsIgnoreCase("admin")){
+            
+           
+            
+            hs.setAttribute("user", ud);
+            
+            
+            return "adminPage";
+        }
 
         if (ui.checkLogin(ud.getUsername(), ud.getPassword())) {
              
@@ -134,12 +147,67 @@ public class UserController {
         }
 
     }
+    
+    @GetMapping("/getAllUsers")
+    public String getAllUsers(ModelMap mm){
+        
+       List<User> allUsers = ui.findAllUsers();
+       mm.addAttribute("allusers", allUsers);  
+        
+       return "allUsers";
+    }
+    
+    @GetMapping("/delete/{id}")      
+    public String deleteTrainer(@PathVariable("id") int id){
+        
+        
+        ui.deleteUser(ui.findUserById(id));
+        
+       
+        return "redirect:/getAllUsers";
+    }
 
+    
+     @GetMapping("/preupdate/{id}")
+    public String preUpdate(@PathVariable("id") int id , ModelMap mm){
+        User u = ui.findUserById(id);
+        u.setDateofbirth(null);
+        mm.addAttribute("user",u);
+      return "updateForm";  
+    }
+    
+      @PostMapping("/updateUser/{id}")
+    public String updateTrainer(@Valid @ModelAttribute("user")User u ,@PathVariable("id") int id , BindingResult br, ModelMap mm){
+       
+        
+        if (br.hasErrors()){
+            
+           u.setId(id);
+       
+         return "updateForm";  
+         } 
+        
+         u.setId(id);
+         u.setDateofbirth(u.getDateofbirth());
+         ui.insertUser(u);
+        
+        
+         return "redirect:/getAllUsers";
+    }
+    
+    
     @PostMapping("/logout")
     public String logout(HttpSession hs) {
         hs.invalidate();
-        return "redirect:/prelogin";
+        return "redirect:/login";
     }
+    
+    @PostMapping("/logoutAdmin")
+    public String logoutAdmin(HttpSession hs) {
+        
+        return "redirect:/";
+    }
+    
     
     @PostMapping("/gameOver/{games}/{wins}")
     public String gameOver(@PathVariable("games")Integer gamesPlayed ,@PathVariable("wins")Integer totalWins ,  HttpSession hs){
