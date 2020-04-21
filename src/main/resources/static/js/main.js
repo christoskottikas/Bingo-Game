@@ -40,9 +40,22 @@ function onConnected() {
     stompClient.send("/app/chat.register",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
-    )
+    );
 
     connectingElement.classList.add('hidden');
+}
+
+function onDisconnected() {
+    // Subscribe to the Public Topic
+    stompClient.subscribe('/topic/public', onMessageReceived);
+
+    // Tell your username to the server
+    stompClient.send("/app/chat.register",
+        {},
+        JSON.stringify({sender: username, type: 'LEAVE'})
+    );
+
+    
 }
 
 
@@ -117,5 +130,5 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', send, true)
+usernameForm.addEventListener('submit', connect, true);
+messageForm.addEventListener('submit', send, true);

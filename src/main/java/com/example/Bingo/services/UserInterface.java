@@ -27,4 +27,6 @@ public interface UserInterface {
     
     public boolean checkEmail(String email);
     
+    public void deleteUser(User u);
+    
 }

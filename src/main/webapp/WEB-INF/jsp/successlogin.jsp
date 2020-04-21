@@ -1,8 +1,3 @@
-<%-- 
-    Document   : successlogin
-    Created on : Apr 16, 2020, 1:14:37 PM
-    Author     : Ro Mario
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,7 +5,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <title>Spring Boot WebSocket Chat Application | CalliCoder</title>
+  <title>It's time for BINGO!</title>
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/bingo.css" />
@@ -26,7 +21,8 @@
 
   <div id="username-page">
     <div class="username-page-container" id="section3">
-      <h1 class="title">Welcome, ${u.firstname} ${u.lastname}</h1>
+        <h1 class="title">Welcome, ${u.firstname} ${u.lastname}</h1><br>
+        <h2>Games: <span id="totalGames">${u.stats.games}</span>   Wins: <span id="totalWins">${u.stats.wins}</span></h2>
       <form id="usernameForm" name="usernameForm">
         <div class="form-group">
           <div>
@@ -60,14 +56,10 @@
         <div class="col-9">
           <div class="chat-container">
             
-      <div class="container center">
+      <div class="container center"> <h2>Games: <span id="totalGames2">${u.stats.games}</span>   Wins: <span id="totalWins2">${u.stats.wins}</span></h2>
           <div class="center">
           <svg width="300" height="420">
       
-            <!-- B column information. Columns are made
-                 up of a header square with letter,
-                 5 rows of Card within their squares,
-                 and a ball with it's number. -->
             <rect    x="0"    y="0"   class="b" width="60"
                 height="60" />
             <text    x="20"   y="40"  class="t" >B</text>
@@ -223,13 +215,7 @@
           </div>
         </div>
         <div id="col-2">
-          <form action="/logout" method="Post">
-            <input type="submit" class="btn btn-danger float-right" value="Logout" />
-          </form>
           <div class="chat-container" id="section2">
-
-     
-
             <div class="chat-header">
               <h2>Bingo Global Chat Box</h2>
             </div>

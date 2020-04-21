@@ -19,7 +19,7 @@
   </head>
    <body data-spy="scroll" data-target="#navbar1" data-offset="60">
    
-    <div class="1stSection" id="section1">
+    <div  class="1stSection" id="section1">
         <div class="container h-100" >
 
             <div class="row h-100">
@@ -182,6 +182,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="scripts.js"></script>
+    
 </body>
 </html> 
