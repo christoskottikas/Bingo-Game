@@ -34,33 +34,27 @@
     stroke: white;
   }
   
-  /* Make the o class elements (balls or rectangles)
-     have a white border and a pale green color. */
+  
   .o {
     fill: #b0ffa0;
     stroke-width: 5;
     stroke: white;
   }
   
-  /* Make the h(idden) class elements (balls) have a
-     white border and a white color. Used to hide them
-     before they are called. */
+  
   .h {
     fill: white;
     stroke-width: 5;
     stroke: white;
   }
   
-  /* Make the t(ext) class elements (text) written in
-     black relatively large characters. */
+  
   .t {
     fill: black;
     font-size: 30px;
   }
   
-  /* Make the e(rror) class elements (text) written in
-     red relatively large characters. Used to show
-     numbers daubbed that haven't been called. */
+ 
   .e {
 
     fill: red;
@@ -69,33 +63,50 @@
     
   }
   
-  /* Make the v(erified) class elements (text) written
-     in white relatively large characters. Used to show
-     correctly daubbed numbers or to hide the numbers
-     on top of hidden balls (class h.) */
+ 
   .v {
     fill: white;
     font-size: 30px;
 
   }
   
-  /* Left table data should be left justified third of
-     area under the balls. */
+  
   #left {
     text-align: left;
     width: 100px;
   }
   
-  /* Center table data should be centered in second
-     third of area under the balls. */
+ 
   #center {
     text-align: center;
     width: 100px;
   }
   
-  /* Right table data should be right justified in final
-     third of area under the balls. */
+  
   #right {
     text-align: right;
     width: 100px;
   }
+  
+   #dialogoverlay{
+    display: none;
+    opacity: .8;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: #DBB1BC;
+    width: 100%;
+    z-index: 10;
+  }
+  #dialogbox{
+    display: none;
+    position: fixed;
+    background: #000;
+    border-radius:7px; 
+    width:550px;
+    z-index: 10;
+  }
+  #dialogbox > div{ background:#FFF; margin:8px; }
+  #dialogbox > div > #dialogboxhead{ background: #8F95D3; font-size:19px; padding:10px; color:#CCC; border: 2px solid; border-color: #000; }
+  #dialogbox > div > #dialogboxbody{ background:#805bf1; padding:20px; color:#FFF; border: 2px solid; border-color: #000;}
+  #dialogbox > div > #dialogboxfoot{ background: #8F95D3; padding:10px; text-align:right; border: 2px solid; border-color: #000;}

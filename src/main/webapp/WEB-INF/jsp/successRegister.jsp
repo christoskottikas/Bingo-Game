@@ -40,7 +40,7 @@
                                   <br>
                                   <br>
                                   <div>
-                                    <a href="prelogin" class="btn btn-outline-info4 btn-lg rounded-center " type="button">Continue</a>
+                                    <a href="prelogin" id="reg" class="btn btn-outline-info4 btn-lg rounded-center " type="button">Continue</a>
                                   </div>
                                 </div>
                             </div>
@@ -92,11 +92,12 @@
             </div>
             <!--/row-->
         </div>
+     <div id="mail" style="display: none">${user.email}</div>
     </footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
+    <script src="js/email.js"></script>
 </body>
 </html> 
 

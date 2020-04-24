@@ -16,5 +16,10 @@
             <div><form action="/logoutAdmin" method="POST">
                     <input type="submit" class="btn btn-danger" value="Logout" />
                 </form></div>
+        
+        <div><form action="/adminLogin" method="POST">
+                    <input type="submit" class="btn btn-success" value="Start playing" />
+                </form></div>
+        
     </body>
 </html>

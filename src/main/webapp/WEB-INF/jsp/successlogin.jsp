@@ -18,7 +18,14 @@
   <noscript>
     <h2>Sorry! Your browser doesn't support Javascript</h2>
   </noscript>
-
+<div id="dialogoverlay"></div>
+      <div id="dialogbox">
+        <div>
+          <div id="dialogboxhead"></div>
+          <div id="dialogboxbody"> </div>
+          <div id="dialogboxfoot"></div>
+        </div>
+      </div>
   <div id="username-page">
     <div class="username-page-container" id="section3">
         <h1 class="title">Welcome, ${u.firstname} ${u.lastname}</h1><br>
@@ -39,7 +46,7 @@
         </div>
       </form>
 
-      <form action="/logout" method="Post">
+      <form action="/logout" method="POST">
         <input type="submit" class="btn btn-danger" value="Logout" />
       </form>
 
@@ -196,9 +203,7 @@
           </svg>
       </div>  
       </div>
-          <!-- Use a table row to evenly distribute the
-               bingo button, the number of balls remaining,
-               and the automatic daub button. -->
+          
           <table>
             <tr>
               <td id="left">
@@ -207,7 +212,7 @@
               </td>
               <td id="center"></td>
               <td id="right">
-                <input type="button" value="autodaub" id="daub"
+                <input type="button" value="Manual" id="daub"
                     onclick="Card.toggleDaub(this);"/>
               </td>
             </tr>
