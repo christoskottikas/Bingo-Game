@@ -25,15 +25,16 @@
         <h3>All users</h3>
         <table border="1" id="myTable">
          <tr>
-             <th id="playerId" onclick="sortByInteger(playerId,idsColumn)">ID</th>
-             <th id="firstName" onclick="sortByString(firstName,firstNameColumn)">First name</th>
-             <th id="lastName" onclick="sortByString(lastName,lastNameColumn)">Last name</th>
-             <th id="userName" onclick="sortByString(userName,userNameColumn)">Username</th>
-             <th id="dateOfBirth" onclick="sortByString(dateOfBirth,dateOfBirthColumn)">Date of birth</th>
-             <th id="playerEmail" onclick="sortByString(playerEmail,playerEmailColumn)">Email</th>
-             <th id="balance" onclick="sortByInteger(balance,balanceColumn)">Balance</th>
-             <th id="totalGames" onclick="sortByInteger(totalGames,gamesColumn)">Games Played</th>
-             <th id="totalWins" onclick="sortByInteger(totalWins,winsColumn)">Games Won</th>
+             <th id="ID" onclick="sortByInteger(playerId,idsColumn)">ID</th>
+             <th id="First name" onclick="sortByString(firstName,firstNameColumn)">First name</th>
+             <th id="Last name" onclick="sortByString(lastName,lastNameColumn)">Last name</th>
+             <th id="Username" onclick="sortByString(userName,userNameColumn)">Username</th>
+             <th id="Date of birth" onclick="sortByString(dateOfBirth,dateOfBirthColumn)">Date of birth</th>
+             <th id="Email" onclick="sortByString(playerEmail,playerEmailColumn)">Email</th>
+             <th id="Balance" onclick="sortByInteger(balance,balanceColumn)">Balance</th>
+             <th id="Games Played" onclick="sortByInteger(totalGames,gamesColumn)">Games Played</th>
+             <th id="Games Won" onclick="sortByInteger(totalWins,winsColumn)">Games Won</th>
+             <th id="Role" onclick="sortByString(role,roleColumn)">Role</th>
              <th style="cursor: default" colspan="2">Action</th>
          </tr>
                     <c:forEach items="${allusers}" var="u">
@@ -47,7 +48,8 @@
                             <td>${u.balance}</td>
                             <td>${u.stats.games}</td>
                             <td>${u.stats.wins}</td>
-                             <td><a href="preupdate/${u.id}">Update</td>
+                            <td>${u.roleID.roleName}</td>
+                            <td><a href="preupdate/${u.id}">Update</td>
                             <td><a href="delete/${u.id}">Delete</a></td>
                         </tr>
                     </c:forEach>
@@ -65,7 +67,7 @@
                         <span style="margin-left: 29%;"><b>Ascending : </b><h3 style="display: inline"><i class="far fa-caret-square-up" style="background-color: #99ccff"></i></h3></span>&nbsp;&nbsp;
                         <span><b>Descending : </b><h3 style="display: inline"><i class="far fa-caret-square-down" style="background-color: #ffccff"></i></h3></span>
                         </div>
-                        
+                       
                         <script src="js/allUsers.js"></script>                       
                     </body>
                     </html>

@@ -5,7 +5,7 @@ function hideAdminDeleteUrl() {
     var totalPlayers = 0;
     var adminRow = document.getElementById("admin");
     adminRow.style.backgroundColor = "#ccccff";
-    document.getElementById("admin").getElementsByTagName("TD")[10].style.display = "none";     
+    document.getElementById("admin").getElementsByTagName("TD")[11].style.display = "none";     
 
     table1 = document.getElementById("myTable");
     var rows = table1.rows;
@@ -22,34 +22,41 @@ function hideAdminDeleteUrl() {
     document.getElementById("playersSum").innerHTML = '<b>Total Players :  ' + totalPlayers + '  </b>';
 }
 
-var balance = "balance";
+var balance = "Balance";
 var balanceColumn = 6;
-var totalGames = "totalGames";
+var totalGames = "Games Played";
 var gamesColumn = 7;
-var totalWins = "totalWins";
+var totalWins = "Games Won";
 var winsColumn = 8;
-var playerId = "playerId";
+var playerId = "ID";
 var idsColumn = 0;
-var firstName = "firstName";
+var firstName = "First name";
 var firstNameColumn = 1;
-var lastName = "lastName";
+var lastName = "Last name";
 var lastNameColumn = 2;
-var userName = "userName";
+var userName = "Username";
 var userNameColumn = 3;
-var dateOfBirth = "dateOfBirth";
+var dateOfBirth = "Date of birth";
 var dateOfBirthColumn = 4;
-var playerEmail = "playerEmail";
+var playerEmail = "Email";
 var playerEmailColumn = 5;
+var role = "Role";
+var roleColumn = 9;
 
 function sortByInteger(columnID, columnNumber) {
     
   
     tableHeadRow = document.getElementById("myTable").rows[0].cells;
-     for (let i = 0; i <= 8; i++) {
+  
+     for (let i = 0; i <= 9; i++) {
+
          tableHeadRow[i].style.backgroundColor = "";
+         
     }
     
     document.getElementById(columnID).style.backgroundColor = "#99ccff";
+    
+  
     
       var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("myTable");
@@ -82,6 +89,7 @@ function sortByInteger(columnID, columnNumber) {
     } else if (!ascending) {
         ascending = true;
         document.getElementById(columnID).style.backgroundColor = "#ffccff";
+       
         while (switching) {
             switching = false;
             rows = table.rows;
@@ -116,6 +124,7 @@ function sortByString(columnID, columnNumber) {
     }
 
     document.getElementById(columnID).style.backgroundColor = "#99ccff";
+    
 
     var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("myTable");
@@ -148,6 +157,7 @@ function sortByString(columnID, columnNumber) {
     } else if (!ascending) {
         ascending = true;
         document.getElementById(columnID).style.backgroundColor = "#ffccff";
+      
         while (switching) {
             switching = false;
             rows = table.rows;

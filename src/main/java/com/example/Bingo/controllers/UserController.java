@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.example.Bingo.dto.MailRequest;
 import com.example.Bingo.dto.MailResponse;
+import com.example.Bingo.model.Role;
 import com.example.Bingo.services.EmailService;
-import java.util.ArrayList;
+import com.example.Bingo.services.RoleInterfaceImp;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +41,9 @@ public class UserController {
 
     @Autowired
     private EmailService service;
+    
+    @Autowired
+    RoleInterfaceImp ri;
 
     @GetMapping("/")
     public String showHomePage() {
@@ -77,7 +81,8 @@ public class UserController {
 
                 return "registerform";
             } else {
-
+                
+                Role role = new Role();
                 Stats playerStats = new Stats();
                 User u = new User();
                 u.setFirstname(ud.getFirstName());
@@ -88,8 +93,19 @@ public class UserController {
                 u.setBalance(200);
                 u.setDateofbirth(ud.getDateOfBirth());
 
-                ui.insertUser(u);
-
+                if (u.getUsername().equalsIgnoreCase("admin")){
+                    
+                    role.setRoleId(2);
+                    u.setRoleID(role);
+                    ui.insertUser(u);
+                }     
+                else{
+                    
+                    role.setRoleId(1);
+                    u.setRoleID(role);
+                    ui.insertUser(u);   
+                }
+  
                 playerStats.setGames(0);
                 playerStats.setWins(0);
                 playerStats.setUserId(u);
@@ -97,8 +113,7 @@ public class UserController {
                 si.insertStats(playerStats);
                 
                 mm.addAttribute("user", u);
-     
-                
+
                 return "successRegister";
             }
 
@@ -130,8 +145,8 @@ public class UserController {
     public String login(@ModelAttribute("user") UserDto ud, ModelMap mm, HttpSession hs, BindingResult br) {
 
         User user = ui.findByUsername(ud.getUsername());
-
-        if (ud.getUsername().equalsIgnoreCase("admin") && ui.checkLogin(ud.getUsername(), ud.getPassword())) {
+         
+        if (user.getRoleID().getRoleId() == 2 && ui.checkLogin(ud.getUsername(), ud.getPassword())) {
 
             hs.setAttribute("u", user);
 
@@ -182,6 +197,7 @@ public class UserController {
         User u = ui.findUserById(id);
         u.setDateofbirth(null);
         mm.addAttribute("user", u);
+        mm.addAttribute("allRoles",ri.getAllRoles());
         return "updateForm";
     }
 
@@ -208,6 +224,7 @@ public class UserController {
              
         u.setId(id);
         u.setDateofbirth(u.getDateofbirth());
+      
         ui.insertUser(u);
 
         return "redirect:/getAllUsers";
