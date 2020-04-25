@@ -41,8 +41,8 @@
             <form:input type="text" id="Date" path="dateofbirth" />
             <form:errors class="error" path="dateofbirth"/>
             <form:input type="hidden" path="password" value = "${user.password}" /><br><br><br>
+            <form:label path="roleID">Role</form:label>
             <form:select path="roleID" id="rolesList" >  
-
                 <form:options items="${allRoles}"  itemLabel="roleName" path="roleID"/>
             </form:select>
 
@@ -96,8 +96,11 @@
                                 email: true
                             },
                             dateofbirth: "required",
-                            balance: "required"
-                        },
+                            balance:{
+                                required: true,
+                                digits:true
+                        }
+                    },
                         messages: {
                             firstname: {
                                 required: "Please enter a firstname",
@@ -110,8 +113,12 @@
                             username: "Please enter a username",
                             email: "Please enter a valid email address",
                             dateofbirth: "Please enter a valid date of birth",
-                            balance: "Please enter a valid balance amount"
-                        },
+                            balance: {
+                               required: "Please enter an amount",
+                               digits: "Digits only"
+                        }
+                    },
+                        
 
                         submitHandler: function (form) {
                             form.submit();

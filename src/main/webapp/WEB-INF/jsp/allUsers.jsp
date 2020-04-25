@@ -50,7 +50,8 @@
                             <td>${player.stats.games}</td>
                             <td>${player.stats.wins}</td>
                             <td>${player.roleID.roleName}</td>
-                            <td><a href="preupdate/${player.id}">Update</td>  
+                            <td><a href="preupdate/${player.id}">Update</td>
+                            <td><a href="delete/${player.id}">Delete</a></td>
                         </tr>
                         </c:if>
                         <c:if test="${player.username != u.username}">

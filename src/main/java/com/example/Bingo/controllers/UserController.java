@@ -140,6 +140,8 @@ public class UserController {
 
         return "login";
     }
+    
+  
 
     @PostMapping("/login")
     public String login(@ModelAttribute("user") UserDto ud, ModelMap mm, HttpSession hs, BindingResult br) {
@@ -159,7 +161,9 @@ public class UserController {
 
             return "successlogin";
 
-        } else {
+        }
+ 
+        else {
 
             br.rejectValue("username", "error.userName");
 
@@ -220,7 +224,7 @@ public class UserController {
                  mm.addAttribute("allRoles",ri.getAllRoles());        
                 return "updateForm";
             }
-             
+      
           else {   
              
         u.setId(id);
