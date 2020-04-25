@@ -5,21 +5,26 @@ import com.example.Bingo.model.Stats;
 import com.example.Bingo.model.User;
 import com.example.Bingo.services.StatsInterfaceImp;
 import com.example.Bingo.services.UserInterfaceImp;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import com.example.Bingo.dto.MailRequest;
+import com.example.Bingo.dto.MailResponse;
+import com.example.Bingo.services.EmailService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
@@ -29,9 +34,12 @@ public class UserController {
 
     @Autowired
     UserInterfaceImp ui;
-    
+
     @Autowired
     StatsInterfaceImp si;
+
+    @Autowired
+    private EmailService service;
 
     @GetMapping("/")
     public String showHomePage() {
@@ -42,7 +50,7 @@ public class UserController {
     public String preRegisterUser(ModelMap mm) {
 
         UserDto userdto = new UserDto();
-        
+
         mm.addAttribute("RegisterDto", userdto);
 
         return "registerform";
@@ -69,7 +77,7 @@ public class UserController {
 
                 return "registerform";
             } else {
-                
+
                 Stats playerStats = new Stats();
                 User u = new User();
                 u.setFirstname(ud.getFirstName());
@@ -79,15 +87,17 @@ public class UserController {
                 u.setEmail(ud.getEmail());
                 u.setBalance(200);
                 u.setDateofbirth(ud.getDateOfBirth());
-                
+
                 ui.insertUser(u);
-                
+
                 playerStats.setGames(0);
                 playerStats.setWins(0);
                 playerStats.setUserId(u);
-                
-                si.insertStats(playerStats);
 
+                si.insertStats(playerStats);
+                
+                mm.addAttribute("user", u);
+     
                 
                 return "successRegister";
             }
@@ -120,22 +130,18 @@ public class UserController {
     public String login(@ModelAttribute("user") UserDto ud, ModelMap mm, HttpSession hs, BindingResult br) {
 
         User user = ui.findByUsername(ud.getUsername());
-        
-        if(ud.getUsername().equalsIgnoreCase("admin") && ud.getPassword().equalsIgnoreCase("admin")){
-            
-           
-            
-            hs.setAttribute("user", ud);
-            
-            
+
+        if (ud.getUsername().equalsIgnoreCase("admin") && ui.checkLogin(ud.getUsername(), ud.getPassword())) {
+
+            hs.setAttribute("u", user);
+
             return "adminPage";
         }
 
         if (ui.checkLogin(ud.getUsername(), ud.getPassword())) {
-             
-               
-           hs.setAttribute("u", user); 
-         
+
+            hs.setAttribute("u", user);
+
             return "successlogin";
 
         } else {
@@ -143,87 +149,108 @@ public class UserController {
             br.rejectValue("username", "error.userName");
 
             return "login";
-
         }
+    }
 
+    @PostMapping("/adminLogin")
+    public String adminLogin() {
+
+        return "successlogin";
     }
-    
+
     @GetMapping("/getAllUsers")
-    public String getAllUsers(ModelMap mm){
+    public String getAllUsers(ModelMap mm) {
         
-       List<User> allUsers = ui.findAllUsers();
-       mm.addAttribute("allusers", allUsers);  
-        
-       return "allUsers";
-    }
-    
-    @GetMapping("/delete/{id}")      
-    public String deleteTrainer(@PathVariable("id") int id){
-        
-        
-        ui.deleteUser(ui.findUserById(id));
-        
+
+        List<User> allUsers = ui.findAllUsers();
+        mm.addAttribute("allusers", allUsers);
        
+
+        return "allUsers";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTrainer(@PathVariable("id") int id) {
+
+        ui.deleteUser(ui.findUserById(id));
+
         return "redirect:/getAllUsers";
     }
 
-    
-     @GetMapping("/preupdate/{id}")
-    public String preUpdate(@PathVariable("id") int id , ModelMap mm){
+    @GetMapping("/preupdate/{id}")
+    public String preUpdate(@PathVariable("id") int id, ModelMap mm) {
         User u = ui.findUserById(id);
         u.setDateofbirth(null);
-        mm.addAttribute("user",u);
-      return "updateForm";  
+        mm.addAttribute("user", u);
+        return "updateForm";
     }
-    
-      @PostMapping("/updateUser/{id}")
-    public String updateTrainer(@Valid @ModelAttribute("user")User u ,@PathVariable("id") int id , BindingResult br, ModelMap mm){
-       
-        
-        if (br.hasErrors()){
+
+    @PostMapping("/updateUser/{id}")
+    public String updateTrainer(@Valid @ModelAttribute("user") User u, @PathVariable("id") int id, BindingResult br, ModelMap mm) {
             
-           u.setId(id);
-       
-         return "updateForm";  
-         } 
+        User temp =  ui.findUserById(id);
         
-         u.setId(id);
-         u.setDateofbirth(u.getDateofbirth());
-         ui.insertUser(u);
-        
-        
-         return "redirect:/getAllUsers";
+             if (!temp.getUsername().equalsIgnoreCase(u.getUsername()) && ui.checkUsername(u.getUsername())) {
+
+                br.rejectValue("username", "error.registerUsername");      
+                u.setDateofbirth(null);
+               return "updateForm";
+        }
+        else  if (!temp.getEmail().equalsIgnoreCase(u.getEmail()) && ui.checkEmail(u.getEmail())) {
+
+                br.rejectValue("email", "error.email");
+                u.setDateofbirth(null);
+                          
+                return "updateForm";
+            }
+             
+          else {   
+             
+        u.setId(id);
+        u.setDateofbirth(u.getDateofbirth());
+        ui.insertUser(u);
+
+        return "redirect:/getAllUsers";
+          }
     }
-    
-    
+
     @PostMapping("/logout")
     public String logout(HttpSession hs) {
         hs.invalidate();
-        return "redirect:/login";
-    }
-    
-    @PostMapping("/logoutAdmin")
-    public String logoutAdmin(HttpSession hs) {
-        
         return "redirect:/";
     }
-    
-    
+
+    @PostMapping("/logoutAdmin")
+    public String logoutAdmin(HttpSession hs) {
+        hs.invalidate();
+        return "redirect:/";
+    }
+
     @PostMapping("/gameOver/{games}/{wins}")
-    public String gameOver(@PathVariable("games")Integer gamesPlayed ,@PathVariable("wins")Integer totalWins ,  HttpSession hs){
-      Stats playerStats = new Stats();
-      User user = (User) hs.getAttribute("u");
-      
-     int statsId = user.getStats().getStatsId();
-      
-      playerStats.setStatsId(statsId);
-      playerStats.setGames(gamesPlayed);
-      playerStats.setWins(totalWins);
-      playerStats.setUserId(user);
-      
-      si.insertStats(playerStats);
-      
+    public String gameOver(@PathVariable("games") Integer gamesPlayed, @PathVariable("wins") Integer totalWins, HttpSession hs) {
+        Stats playerStats = new Stats();
+        User user = (User) hs.getAttribute("u");
+
+        int statsId = user.getStats().getStatsId();
+
+        playerStats.setStatsId(statsId);
+        playerStats.setGames(gamesPlayed);
+        playerStats.setWins(totalWins);
+        playerStats.setUserId(user);
+
+        si.insertStats(playerStats);
+
         hs.invalidate();
         return "redirect:/prelogin";
+    }
+
+    @ResponseBody
+    @PostMapping("/sendingEmail")
+    public MailResponse sendEmail(@RequestBody MailRequest request) {
+        Map<String, Object> model = new HashMap<>();
+        model.put("Name", request.getName());
+        model.put("location", "Bingo Greece");
+        return service.sendEmail(request, model);
+
     }
 }

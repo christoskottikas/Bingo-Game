@@ -53,7 +53,7 @@ public class UserInterfaceImp implements UserInterface{
        
         User u =  ur.findByUsername(username);
        
-         if(u != null &&  username.equals(u.getUsername())){
+         if(u != null &&  username.equalsIgnoreCase(u.getUsername())){
          
          return true;
          }
@@ -68,7 +68,7 @@ public class UserInterfaceImp implements UserInterface{
         List<User> allusers = ur.findAll();
         
         for(User u : allusers){
-            if (user != null && username.equals(u.getUsername())&& passwordEncoder.matches(password,user.getPassword())){
+            if (user != null && username.equalsIgnoreCase(u.getUsername())&& passwordEncoder.matches(password,user.getPassword())){
                 return true;
             }    
 
@@ -87,7 +87,7 @@ public class UserInterfaceImp implements UserInterface{
        
         User u =  ur.findByEmail(email);
        
-         if(u != null &&  email.equals(u.getEmail())){
+         if(u != null &&  email.equalsIgnoreCase(u.getEmail())){
          
          return true;
          }

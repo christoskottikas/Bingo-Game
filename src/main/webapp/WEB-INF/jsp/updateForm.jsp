@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+
         <title>Update form</title>
         <style>
             .error{
@@ -29,7 +29,7 @@
             <form:input path="lastname"  placeholder = "${user.lastname}" />
             <form:errors class="error" path="lastname"/><br><br>
             <form:label path="username">Username</form:label>
-            <form:input path="username"   placeholder = "${user.username}" />
+            <form:input path="username"  id="userName"  placeholder = "${user.username}" />
             <form:errors class="error" path="username"/><br><br>
             <form:label path="email">Email</form:label>
             <form:input path="email"  placeholder = "${user.email}" />
@@ -57,6 +57,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 
         <script>
+
+            var userNameField = document.getElementById("userName");
 
 
             $(document).ready(function () {
@@ -95,6 +97,12 @@
                         }
                     });
                 });
+
+                if (userNameField.value.toLowerCase() === "admin") {
+                                       
+                    userNameField.readOnly = true;
+                    userNameField.style.cursor = "no-drop";
+                }
             });
         </script>
     </body>
