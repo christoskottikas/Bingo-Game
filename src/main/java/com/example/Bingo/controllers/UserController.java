@@ -210,13 +210,14 @@ public class UserController {
 
                 br.rejectValue("username", "error.registerUsername");      
                 u.setDateofbirth(null);
+                mm.addAttribute("allRoles",ri.getAllRoles());
                return "updateForm";
         }
         else  if (!temp.getEmail().equalsIgnoreCase(u.getEmail()) && ui.checkEmail(u.getEmail())) {
 
                 br.rejectValue("email", "error.email");
                 u.setDateofbirth(null);
-                          
+                 mm.addAttribute("allRoles",ri.getAllRoles());        
                 return "updateForm";
             }
              
