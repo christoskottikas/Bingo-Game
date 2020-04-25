@@ -23,7 +23,7 @@
         <form:form method="POST" action="/updateUser/${user.id}" modelAttribute="user" name="registration">
 
             <form:label path="firstname">First Name</form:label>  
-            <form:input path="firstname"  placeholder = "${user.firstname}" />
+            <form:input path="firstname"  placeholder = "${user.firstname}"  />
             <form:errors class="error" path="firstname"/><br><br>
             <form:label path="lastname">Last Name</form:label>
             <form:input path="lastname"  placeholder = "${user.lastname}" />
@@ -35,12 +35,16 @@
             <form:input path="email"  placeholder = "${user.email}" />
             <form:errors class="error" path="email"/><br><br>
             <form:label path="balance">Balance</form:label>
-            <form:input path="balance"  placeholder = "${user.balance}" />
+            <form:input path="balance" type="number" min="0" placeholder = "${user.balance}" />
             <form:errors class="error" path="balance"/><br><br>
             <form:label path="dateofbirth">Date of birth</form:label>
             <form:input type="text" id="Date" path="dateofbirth" />
             <form:errors class="error" path="dateofbirth"/>
             <form:input type="hidden" path="password" value = "${user.password}" /><br><br><br>
+            <form:select path="roleID" id="rolesList" >  
+
+                <form:options items="${allRoles}"  itemLabel="roleName" path="roleID"/>
+            </form:select>
 
 
 
@@ -60,22 +64,32 @@
 
             var userNameField = document.getElementById("userName");
 
-
             $(document).ready(function () {
+
                 $(function () {
                     $("#Date").datepicker({
                         maxDate: "-18y",
                         minDate: new Date(1930, 6, 31)
                     });
                 });
-
                 $(function () {
+
+                    jQuery.validator.addMethod("lettersonly", function (value, element) {
+                        return this.optional(element) || /^[a-z]+$/i.test(value);
+                    });
+
 
                     $("form[name='registration']").validate({
 
                         rules: {
-                            firstname: "required",
-                            lastname: "required",
+                            firstname: {
+                                required: true,
+                                lettersonly: true
+                            },
+                            lastname: {
+                                required: true,
+                                lettersonly: true
+                            },
                             username: "required",
                             email: {
                                 required: true,
@@ -85,23 +99,38 @@
                             balance: "required"
                         },
                         messages: {
-                            firstname: "Please enter firstname",
-                            lastname: "Please enter lastname",
-                            username: "Please enter username",
+                            firstname: {
+                                required: "Please enter a firstname",
+                                lettersonly: "Letters only please"
+                            },
+                            lastname: {
+                                required: "Please enter a lastname",
+                                lettersonly: "Letters only please"
+                            },
+                            username: "Please enter a username",
                             email: "Please enter a valid email address",
                             dateofbirth: "Please enter a valid date of birth",
                             balance: "Please enter a valid balance amount"
                         },
+
                         submitHandler: function (form) {
                             form.submit();
                         }
                     });
                 });
 
+
+
                 if (userNameField.value.toLowerCase() === "admin") {
-                                       
+
+
                     userNameField.readOnly = true;
                     userNameField.style.cursor = "no-drop";
+                    var roles = document.getElementById("rolesList").getElementsByTagName("option");
+                    for (var i = 1; i < roles.length; i++) {
+
+                        roles[i].disabled = true;
+                    }
                 }
             });
         </script>
