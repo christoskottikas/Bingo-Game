@@ -4,9 +4,8 @@ function hideAdminDeleteUrl() {
 
     var totalPlayers = 0;
     var adminRow = document.getElementById("admin");
-    adminRow.style.backgroundColor = "#ccccff";
-    document.getElementById("admin").getElementsByTagName("TD")[11].style.display = "none";     
-
+    adminRow.getElementsByTagName("TD")[11].style.display = "none";     
+  
     table1 = document.getElementById("myTable");
     var rows = table1.rows;
 
