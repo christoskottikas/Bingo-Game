@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.example.Bingo.dto.MailRequest;
 import com.example.Bingo.dto.MailResponse;
 import com.example.Bingo.services.EmailService;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -159,9 +160,11 @@ public class UserController {
 
     @GetMapping("/getAllUsers")
     public String getAllUsers(ModelMap mm) {
+        
 
         List<User> allUsers = ui.findAllUsers();
         mm.addAttribute("allusers", allUsers);
+       
 
         return "allUsers";
     }
@@ -184,19 +187,31 @@ public class UserController {
 
     @PostMapping("/updateUser/{id}")
     public String updateTrainer(@Valid @ModelAttribute("user") User u, @PathVariable("id") int id, BindingResult br, ModelMap mm) {
+            
+        User temp =  ui.findUserById(id);
+        
+             if (!temp.getUsername().equalsIgnoreCase(u.getUsername()) && ui.checkUsername(u.getUsername())) {
 
-        if (br.hasErrors()) {
-
-            u.setId(id);
-
-            return "updateForm";
+                br.rejectValue("username", "error.registerUsername");      
+                u.setDateofbirth(null);
+               return "updateForm";
         }
+        else  if (!temp.getEmail().equalsIgnoreCase(u.getEmail()) && ui.checkEmail(u.getEmail())) {
 
+                br.rejectValue("email", "error.email");
+                u.setDateofbirth(null);
+                          
+                return "updateForm";
+            }
+             
+          else {   
+             
         u.setId(id);
         u.setDateofbirth(u.getDateofbirth());
         ui.insertUser(u);
 
         return "redirect:/getAllUsers";
+          }
     }
 
     @PostMapping("/logout")

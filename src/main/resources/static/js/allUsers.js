@@ -5,7 +5,7 @@ function hideAdminDeleteUrl() {
     var totalPlayers = 0;
     var adminRow = document.getElementById("admin");
     adminRow.style.backgroundColor = "#ccccff";
-    document.getElementById("admin").getElementsByTagName("TD")[9].innerHTML = `<span><a href="preupdate/${adminId}">Update</span>`;
+    document.getElementById("admin").getElementsByTagName("TD")[10].style.display = "none";     
 
     table1 = document.getElementById("myTable");
     var rows = table1.rows;
@@ -42,10 +42,16 @@ var playerEmail = "playerEmail";
 var playerEmailColumn = 5;
 
 function sortByInteger(columnID, columnNumber) {
-
+    
+  
+    tableHeadRow = document.getElementById("myTable").rows[0].cells;
+     for (let i = 0; i <= 8; i++) {
+         tableHeadRow[i].style.backgroundColor = "";
+    }
+    
     document.getElementById(columnID).style.backgroundColor = "#99ccff";
-
-    var table, rows, switching, i, x, y, shouldSwitch;
+    
+      var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("myTable");
     switching = true;
 
@@ -103,6 +109,11 @@ function sortByInteger(columnID, columnNumber) {
 }
 
 function sortByString(columnID, columnNumber) {
+    
+    tableHeadRow = document.getElementById("myTable").rows[0].cells;
+     for (let i = 0; i <= 8; i++) {
+         tableHeadRow[i].style.backgroundColor = "";
+    }
 
     document.getElementById(columnID).style.backgroundColor = "#99ccff";
 

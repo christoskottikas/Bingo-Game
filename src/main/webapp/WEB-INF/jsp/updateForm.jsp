@@ -29,7 +29,7 @@
             <form:input path="lastname"  placeholder = "${user.lastname}" />
             <form:errors class="error" path="lastname"/><br><br>
             <form:label path="username">Username</form:label>
-            <form:input path="username" id="userName"  placeholder = "${user.username}" />
+            <form:input path="username"  id="userName"  placeholder = "${user.username}" />
             <form:errors class="error" path="username"/><br><br>
             <form:label path="email">Email</form:label>
             <form:input path="email"  placeholder = "${user.email}" />
@@ -99,7 +99,7 @@
                 });
 
                 if (userNameField.value.toLowerCase() === "admin") {
-
+                                       
                     userNameField.readOnly = true;
                     userNameField.style.cursor = "no-drop";
                 }

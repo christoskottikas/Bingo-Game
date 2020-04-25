@@ -34,7 +34,7 @@
              <th id="balance" onclick="sortByInteger(balance,balanceColumn)">Balance</th>
              <th id="totalGames" onclick="sortByInteger(totalGames,gamesColumn)">Games Played</th>
              <th id="totalWins" onclick="sortByInteger(totalWins,winsColumn)">Games Won</th>
-             <th style="cursor: default">Action</th>
+             <th style="cursor: default" colspan="2">Action</th>
          </tr>
                     <c:forEach items="${allusers}" var="u">
                         <tr id="${u.username}">
@@ -47,7 +47,8 @@
                             <td>${u.balance}</td>
                             <td>${u.stats.games}</td>
                             <td>${u.stats.wins}</td>
-                            <td><span><a href="preupdate/${u.id}">Update</span><div id="deleteUrl"><a href="delete/${u.id}">Delete</a></div></td>
+                             <td><a href="preupdate/${u.id}">Update</td>
+                            <td><a href="delete/${u.id}">Delete</a></td>
                         </tr>
                     </c:forEach>
 
@@ -64,7 +65,7 @@
                         <span style="margin-left: 29%;"><b>Ascending : </b><h3 style="display: inline"><i class="far fa-caret-square-up" style="background-color: #99ccff"></i></h3></span>&nbsp;&nbsp;
                         <span><b>Descending : </b><h3 style="display: inline"><i class="far fa-caret-square-down" style="background-color: #ffccff"></i></h3></span>
                         </div>
-                        <script>var adminId = ${u.id};</script>
+                        
                         <script src="js/allUsers.js"></script>                       
                     </body>
                     </html>
