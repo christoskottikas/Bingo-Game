@@ -1,15 +1,14 @@
 var ascending = true;
 
 function hideAdminDeleteUrl() {
-
-    var totalPlayers = 0;
-    var adminRow = document.getElementById("admin");
-    adminRow.getElementsByTagName("TD")[11].style.display = "none";     
-  
+    
     table1 = document.getElementById("myTable");
     var rows = table1.rows;
-
-    for (let i = 1; i < (rows.length); i++) {
+    var totalPlayers = 0;
+    
+    var lol = document.getElementById("admin");
+    
+     for (let i = 1; i < (rows.length); i++) {
 
         datesColumn = document.getElementById("myTable").rows[i].cells;
         datesColumn[4].innerHTML = datesColumn[4].innerHTML.substring(0, 10);
@@ -19,7 +18,17 @@ function hideAdminDeleteUrl() {
     }
 
     document.getElementById("playersSum").innerHTML = '<b>Total Players :  ' + totalPlayers + '  </b>';
-}
+    
+    
+     var adminRow = document.getElementById("admin");
+     adminRow.getElementsByTagName("TD")[11].style.display = "none";    
+    
+     }
+    
+   
+
+   
+
 
 var balance = "Balance";
 var balanceColumn = 6;
