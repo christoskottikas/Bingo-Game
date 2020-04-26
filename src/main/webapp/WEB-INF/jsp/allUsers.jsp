@@ -71,7 +71,7 @@
                         </tr>
                         </c:if>
                     </c:forEach>
-
+        </table>
                     <div><form action="/logoutAdmin" method="POST">
                             <input type="submit" class="btn btn-danger" value="Logout" />
                         </form></div>
