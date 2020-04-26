@@ -110,3 +110,36 @@
   #dialogbox > div > #dialogboxhead{ background: #8F95D3; font-size:19px; padding:10px; color:#CCC; border: 2px solid; border-color: #000; }
   #dialogbox > div > #dialogboxbody{ background:#805bf1; padding:20px; color:#FFF; border: 2px solid; border-color: #000;}
   #dialogbox > div > #dialogboxfoot{ background: #8F95D3; padding:10px; text-align:right; border: 2px solid; border-color: #000;}
+  
+  .backgr {
+
+
+    background-image: url('../img/bingobg.png');
+    background-repeat: no-repeat;
+    background-size: cover; }
+
+.mar40 {
+
+    margin-top: 40%;
+}
+
+.mar30 {
+
+    margin-top: 35%;
+}
+
+.backgr1 {
+
+
+    background-image: url('../img/bg2.png');
+    background-repeat: no-repeat;
+    background-size: cover; }
+
+
+.vertical-center {
+  min-height: 100%;  
+  min-height: 100vh; 
+
+  display: flex;
+  align-items: center;
+}
