@@ -19,7 +19,7 @@
                 cursor: pointer;
             }
         </style>
-     <div>Its good to have you back ${u.username}  wallet : ${u.balance} </div>
+     <div>Its good to have you back ${u.username}</div>
     </head>
     <body onload="hideAdminDeleteUrl()">
         <h3>All users</h3>
