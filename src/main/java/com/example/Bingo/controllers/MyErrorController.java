@@ -40,7 +40,7 @@ public String handleError(HttpServletRequest request) {
             return "error-500";
         }
     }
-    return "error";
+    return "error-404";
 }
     
 }
