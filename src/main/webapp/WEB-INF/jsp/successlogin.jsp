@@ -255,29 +255,7 @@
         crossorigin="anonymous"></script>
         <script src="js/main.js"></script>
         <script src="js/bingo.js"></script>
-        <script>
-
-                                                   var currentUser = document.getElementById("user").innerHTML;
-
-
-                                                   if (currentUser === "") {
-
-                                                       $.ajax({
-                                                           type: "POST",
-                                                           url: "/preLogin",
-                                                           data: {},
-                                                           contentType: "application/json; charset=utf-8",
-                                                           dataType: "json",
-                                                           success: function (response) {
-                                                               if (response == true) {
-                                                                   alert("You will now be redirected.");
-                                                                   window.location = "localhost:8080/login";
-                                                               }
-                                                           }
-                                                       });
-
-                                                   }
-        </script>
+       
     </body>
 
 </html>
