@@ -65,7 +65,7 @@
         </div><br><br>
 
         <div><form action="/logout" method="POST">
-                <input type="submit" class="btn btn-danger" value="Go      back     to " /><i class="fas fa-home"></i>
+                <input type="submit" class="btn btn-danger" value="Go      back     to " />&nbsp;&nbsp;<i class="fas fa-home"></i>
             </form></div>
     </body>
 </html>
