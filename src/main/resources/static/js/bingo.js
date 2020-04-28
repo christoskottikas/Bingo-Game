@@ -38,6 +38,8 @@ function updatePaypalDeposit() {
 
 }
 
+
+
 function Card() {
 
     if (bet.value / 1 > balance.innerHTML / 1) {
@@ -208,15 +210,15 @@ Card.drawBall = function () {
         gamesPlayed = gamesPlayed / 1 + 1;
         gamesWon = gamesWon / 1 + 0;
         if (betInGame === 0) {
-        balanceUpdated.innerHTML = balanceUpdated.innerHTML / 1;
-        Alert.render(`Bad luck , you lost : ${bet.value} &nbsp;<i class="fas fa-coins" style="color:gold"></i>. <span style="color: gold" ><b>Wallet :</b></span> ${balanceUpdated.innerHTML} &nbsp;<i class="fas fa-coins" style="color:gold"></i> , Play again for : `);
+            balanceUpdated.innerHTML = balanceUpdated.innerHTML / 1;
+            Alert.render(`Bad luck , you lost : ${bet.value} &nbsp;<i class="fas fa-coins" style="color:gold"></i>. <span style="color: gold" ><b>Wallet :</b></span> ${balanceUpdated.innerHTML} &nbsp;<i class="fas fa-coins" style="color:gold"></i> , Play again for : `);
 
-    } else {
-        balanceUpdated.innerHTML = balanceUpdated.innerHTML / 1 ;
-        Alert.render(`Bad luck , you lost : ${betInGame.value} &nbsp;<i class="fas fa-coins" style="color:gold"></i>. <span style="color: gold" ><b>Wallet :</b></span> ${balanceUpdated.innerHTML} &nbsp;<i class="fas fa-coins" style="color:gold"></i> , Play again for : `);
+        } else {
+            balanceUpdated.innerHTML = balanceUpdated.innerHTML / 1;
+            Alert.render(`Bad luck , you lost : ${betInGame.value} &nbsp;<i class="fas fa-coins" style="color:gold"></i>. <span style="color: gold" ><b>Wallet :</b></span> ${balanceUpdated.innerHTML} &nbsp;<i class="fas fa-coins" style="color:gold"></i> , Play again for : `);
 
-    }
-        
+        }
+
     }
 };
 
@@ -450,7 +452,7 @@ function CustomAlert() {
         document.getElementById('dialogboxfoot').innerHTML =
                 `<div class="row">
                  <div class="col-md-5" style="text-align: right; margin-top: 1%;"><span><h5 style="color: white">Add funds : <i class="fas fa-euro-sign" style="color: gold;"></i></h5></span></div>
-                 <div class="col-md-3"><input style"width: 70%" class="form-control" id="paypalDepositInGame" type="number" value="0"  min="1" onchange="updatePaypalDepositInGame()"></div>
+                 <div class="col-md-3"><input style"width: 70%" class="form-control" id="paypalDepositInGame" type="number" value="0"  min="1" ></div>
                  <div class="col-md-2" style="margin-top: 1%;" id="paypal-button-containerInGame" ></div>
                  <div class="col-md-2"></div>
                  </div><br>
@@ -460,6 +462,10 @@ function CustomAlert() {
                  <div class="col-md-2"></div>
                  <div class="col-md-4"><button style="float: right" class="btn btn-danger" onclick="Alert.stop()">Stop Playing</button></div>
                  </div>`;
+
+
+
+
 
         betInGame = document.getElementById('priceInGame');
         betDisplayInGame = document.getElementById('betChosenInGame');
@@ -472,8 +478,8 @@ function CustomAlert() {
 
         paypal.Buttons({
             createOrder: function (data, actions) {
-      paypalAmmountInGame = document.getElementById('paypalDepositInGame').value;
-      
+
+                paypalAmmountInGame = parseInt(document.getElementById('paypalDepositInGame').value);
                 if (paypalAmmountInGame / 1 <= 0) {
 
                     AlertPaypal.render('Invalid ammount ', 'Please insert a valid ammount of  &nbsp; <i class="fas fa-euro-sign" style="color: gold;"></i>');
@@ -492,9 +498,9 @@ function CustomAlert() {
 
                 return actions.order.capture().then(function (details) {
 
-                    
-                    
-                    balanceUpdated.innerHTML = balanceUpdated.innerHTML/1 + paypalAmmountInGame * 10 ;
+
+
+                    balanceUpdated.innerHTML = balanceUpdated.innerHTML / 1 + paypalAmmountInGame * 10;
                     AlertPaypal.render('Transaction Successfull', ` ${paypalAmmountInGame * 10} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  added to your <span style="color: gold" ><b> Wallet :</b></span> ${balanceUpdated.innerHTML} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  `);
                     document.getElementById('logoutForm').action = `/logout/${balanceUpdated.innerHTML / 1}/${gamesPlayed}/${gamesWon}`;
                     document.getElementById('adminPage').action = `/getAllUsers/${balanceUpdated.innerHTML / 1}/${gamesPlayed}/${gamesWon}`;
@@ -545,7 +551,7 @@ function CustomAlert() {
 
         document.write(`<body style="background-color: #DBB1BC">
                     <p style="font-size:40px;font-weight:bold;color: #B0FFFF;text-align: center">Thanks for playing.</p>
-                    <div style="text-align: center"><form action="/gameOver/${gamesPlayed}/${gamesWon}/${balanceUpdated.innerHTML/1}" method="Post">
+                    <div style="text-align: center"><form action="/gameOver/${gamesPlayed}/${gamesWon}/${balanceUpdated.innerHTML / 1}" method="Post">
                     <input type="submit" style="background-color: #034f84;border: none;color: white;padding: 15px 32px;
                     text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;"
                     value="Sign out" />

@@ -10,7 +10,7 @@ function hideAdminDeleteUrl() {
     var rows = table1.rows;
     var totalPlayers = 0;
 
-    var lol = document.getElementById("admin");
+    
 
     for (let i = 1; i < (rows.length); i++) {
 
@@ -28,11 +28,19 @@ function hideAdminDeleteUrl() {
     adminRow.getElementsByTagName("TD")[11].style.display = "none";
 
     var currentAdmin = document.getElementById("currentAdmin");
-    if (currentAdmin.innerHTML === "") {
+    
+      if (currentAdmin.innerHTML === "") {
 
         window.location.replace("http://localhost:8080/error-404");
     }
 
+
+    currentAdminRow = document.getElementById(currentAdmin.innerHTML);
+    currentAdminRow.getElementsByTagName("TD")[11].style.display = "none";
+    
+    
+    
+  
 }
 
 

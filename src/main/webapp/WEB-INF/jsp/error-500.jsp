@@ -21,7 +21,7 @@
             <p id="code">5<span>0</span><span>0</span></p>
         </div><br><br>
 
-        <div><form action="/logout" method="POST">
+        <div><form action="/logoutAdmin" method="POST">
                 <input type="submit" class="btn btn-danger" value="Go      back     to " />&nbsp;&nbsp;<i class="fas fa-home"></i>
             </form></div>
     </body>
