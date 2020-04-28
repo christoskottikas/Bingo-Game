@@ -133,8 +133,8 @@
                             },
                             dateofbirth: "required",
                             balance: {
-                                required: true,
-                                digits: true
+                                required: true
+                              //  digits: true
                             }
                         },
                         messages: {

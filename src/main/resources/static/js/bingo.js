@@ -495,7 +495,7 @@ function CustomAlert() {
                     
                     
                     balanceUpdated.innerHTML = balanceUpdated.innerHTML/1 + paypalAmmountInGame * 10 ;
-                    AlertPaypal.render('Successfull transaction ', ` ${paypalAmmountInGame * 10} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  added to your <span style="color: gold" ><b> Wallet :</b></span> ${balanceUpdated.innerHTML} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  `);
+                    AlertPaypal.render('Transaction Successfull', ` ${paypalAmmountInGame * 10} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  added to your <span style="color: gold" ><b> Wallet :</b></span> ${balanceUpdated.innerHTML} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  `);
                     document.getElementById('logoutForm').action = `/logout/${balanceUpdated.innerHTML / 1}/${gamesPlayed}/${gamesWon}`;
                     document.getElementById('adminPage').action = `/getAllUsers/${balanceUpdated.innerHTML / 1}/${gamesPlayed}/${gamesWon}`;
 
@@ -608,7 +608,7 @@ paypal.Buttons({
 
             balance.innerHTML = balance.innerHTML / 1 + paypalAmmount * 10;
             balanceUpdated.innerHTML = balance.innerHTML;
-            AlertPaypal.render('Successfull transaction ', ` ${paypalAmmount * 10} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  added to your <span style="color: gold" ><b> Wallet :</b></span> ${balanceUpdated.innerHTML} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  `);
+            AlertPaypal.render('Transaction successfull', ` ${paypalAmmount * 10} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  added to your <span style="color: gold" ><b> Wallet :</b></span> ${balanceUpdated.innerHTML} &nbsp;<i class="fas fa-coins" style="color:gold"></i>  `);
             document.getElementById('logoutForm').action = `/logout/${balanceUpdated.innerHTML / 1}/${gamesPlayed}/${gamesWon}`;
             document.getElementById('adminPage').action = `/getAllUsers/${balanceUpdated.innerHTML / 1}/${gamesPlayed}/${gamesWon}`;
 
