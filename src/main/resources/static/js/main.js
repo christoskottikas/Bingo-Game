@@ -7,6 +7,8 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
+var bet = document.getElementById('price');
+var balance = document.getElementById('balance');
 
 var stompClient = null;
 var username = null;
@@ -16,10 +18,19 @@ var colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
+
 function connect(event) {
     username = document.querySelector('#user').innerHTML;
 
-    if(username) {
+
+    if (bet.value / 1 > balance.innerHTML / 1) {
+
+        AlertPaypal.render('Invalid bet ', 'Insufficient funds &nbsp; <i class="fas fa-coins" style="color: gold;"></i> &nbsp; in your wallet ');
+
+    } else if (bet.value / 1 === 0) {
+
+        AlertPaypal.render('Invalid bet ', 'You didnt place any bet ');
+    } else if (username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
@@ -29,6 +40,7 @@ function connect(event) {
         stompClient.connect({}, onConnected, onError);
     }
     event.preventDefault();
+
 }
 
 
@@ -38,9 +50,9 @@ function onConnected() {
 
     // Tell your username to the server
     stompClient.send("/app/chat.register",
-        {},
-        JSON.stringify({sender: username, type: 'JOIN'})
-    );
+            {},
+            JSON.stringify({sender: username, type: 'JOIN'})
+            );
 
     connectingElement.classList.add('hidden');
 }
@@ -51,11 +63,11 @@ function onDisconnected() {
 
     // Tell your username to the server
     stompClient.send("/app/chat.register",
-        {},
-        JSON.stringify({sender: username, type: 'LEAVE'})
-    );
+            {},
+            JSON.stringify({sender: username, type: 'LEAVE'})
+            );
 
-    
+
 }
 
 
@@ -68,7 +80,7 @@ function onError(error) {
 function send(event) {
     var messageContent = messageInput.value.trim();
 
-    if(messageContent && stompClient) {
+    if (messageContent && stompClient) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
@@ -87,7 +99,7 @@ function onMessageReceived(payload) {
 
     var messageElement = document.createElement('li');
 
-    if(message.type === 'JOIN') {
+    if (message.type === 'JOIN') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
     } else if (message.type === 'LEAVE') {
@@ -132,3 +144,29 @@ function getAvatarColor(messageSender) {
 
 usernameForm.addEventListener('submit', connect, true);
 messageForm.addEventListener('submit', send, true);
+
+var AlertPaypal = new CustomAlertPaypal();
+function CustomAlertPaypal() {
+    this.render = function (title, dialog) {
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        var dialogoverlay = document.getElementById('dialogoverlayPaypal');
+        var dialogbox = document.getElementById('dialogboxPaypal');
+        dialogoverlay.style.display = "block";
+        dialogoverlay.style.height = winH + "px";
+        dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
+        dialogbox.style.top = "10%";
+        dialogbox.style.display = "block";
+
+        document.getElementById('dialogboxheadPaypal').innerHTML = `<h4> ${title}</h4>`;
+        document.getElementById('dialogboxbodyPaypal').innerHTML = `<h5> ${dialog}</h5> `;
+        document.getElementById('dialogboxfootPaypal').innerHTML = '<button class="btn btn-success" onclick="AlertPaypal.ok()">OK</button>';
+    };
+    this.ok = function () {
+
+        document.getElementById('dialogboxPaypal').style.display = "none";
+        document.getElementById('dialogoverlayPaypal').style.display = "none";
+
+
+    };
+}

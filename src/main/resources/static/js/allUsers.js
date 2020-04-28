@@ -1,14 +1,18 @@
 var ascending = true;
 
+
+
+
+
 function hideAdminDeleteUrl() {
-    
+
     table1 = document.getElementById("myTable");
     var rows = table1.rows;
     var totalPlayers = 0;
-    
+
     var lol = document.getElementById("admin");
-    
-     for (let i = 1; i < (rows.length); i++) {
+
+    for (let i = 1; i < (rows.length); i++) {
 
         datesColumn = document.getElementById("myTable").rows[i].cells;
         datesColumn[4].innerHTML = datesColumn[4].innerHTML.substring(0, 10);
@@ -18,16 +22,22 @@ function hideAdminDeleteUrl() {
     }
 
     document.getElementById("playersSum").innerHTML = '<b>Total Players :  ' + totalPlayers + '  </b>';
-    
-    
-     var adminRow = document.getElementById("admin");
-     adminRow.getElementsByTagName("TD")[11].style.display = "none";    
-    
-     }
-    
-   
 
-   
+
+    var adminRow = document.getElementById("admin");
+    adminRow.getElementsByTagName("TD")[11].style.display = "none";
+
+    var currentAdmin = document.getElementById("currentAdmin");
+    if (currentAdmin.innerHTML === "") {
+
+        window.location.replace("http://localhost:8080/error-404");
+    }
+
+}
+
+
+
+
 
 
 var balance = "Balance";
@@ -51,22 +61,23 @@ var playerEmailColumn = 5;
 var role = "Role";
 var roleColumn = 9;
 
-function sortByInteger(columnID, columnNumber) {
-    
-  
-    tableHeadRow = document.getElementById("myTable").rows[0].cells;
-  
-     for (let i = 0; i <= 9; i++) {
 
-         tableHeadRow[i].style.backgroundColor = "";
-         
+function sortByInteger(columnID, columnNumber) {
+
+
+    tableHeadRow = document.getElementById("myTable").rows[0].cells;
+
+    for (let i = 0; i <= 9; i++) {
+
+        tableHeadRow[i].style.backgroundColor = "";
+
     }
-    
+
     document.getElementById(columnID).style.backgroundColor = "#99ccff";
-    
-  
-    
-      var table, rows, switching, i, x, y, shouldSwitch;
+
+
+
+    var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("myTable");
     switching = true;
 
@@ -97,7 +108,7 @@ function sortByInteger(columnID, columnNumber) {
     } else if (!ascending) {
         ascending = true;
         document.getElementById(columnID).style.backgroundColor = "#ffccff";
-       
+
         while (switching) {
             switching = false;
             rows = table.rows;
@@ -125,14 +136,14 @@ function sortByInteger(columnID, columnNumber) {
 }
 
 function sortByString(columnID, columnNumber) {
-    
+
     tableHeadRow = document.getElementById("myTable").rows[0].cells;
-     for (let i = 0; i <= 8; i++) {
-         tableHeadRow[i].style.backgroundColor = "";
+    for (let i = 0; i <= 8; i++) {
+        tableHeadRow[i].style.backgroundColor = "";
     }
 
     document.getElementById(columnID).style.backgroundColor = "#99ccff";
-    
+
 
     var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("myTable");
@@ -165,7 +176,7 @@ function sortByString(columnID, columnNumber) {
     } else if (!ascending) {
         ascending = true;
         document.getElementById(columnID).style.backgroundColor = "#ffccff";
-      
+
         while (switching) {
             switching = false;
             rows = table.rows;

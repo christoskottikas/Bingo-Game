@@ -41,7 +41,7 @@ public class UserController {
 
     @Autowired
     private EmailService service;
-    
+
     @Autowired
     RoleInterfaceImp ri;
 
@@ -81,7 +81,7 @@ public class UserController {
 
                 return "registerform";
             } else {
-                
+
                 Role role = new Role();
                 Stats playerStats = new Stats();
                 User u = new User();
@@ -93,25 +93,24 @@ public class UserController {
                 u.setBalance(200);
                 u.setDateofbirth(ud.getDateOfBirth());
 
-                if (u.getUsername().equalsIgnoreCase("admin")){
-                    
+                if (u.getUsername().equalsIgnoreCase("admin")) {
+
                     role.setRoleId(2);
                     u.setRoleID(role);
                     ui.insertUser(u);
-                }     
-                else{
-                    
+                } else {
+
                     role.setRoleId(1);
                     u.setRoleID(role);
-                    ui.insertUser(u);   
+                    ui.insertUser(u);
                 }
-  
+
                 playerStats.setGames(0);
                 playerStats.setWins(0);
                 playerStats.setUserId(u);
 
                 si.insertStats(playerStats);
-                
+
                 mm.addAttribute("user", u);
 
                 return "successRegister";
@@ -140,14 +139,12 @@ public class UserController {
 
         return "login";
     }
-    
-  
 
     @PostMapping("/login")
     public String login(@ModelAttribute("user") UserDto ud, ModelMap mm, HttpSession hs, BindingResult br) {
 
         User user = ui.findByUsername(ud.getUsername());
-         
+
         if (user.getRoleID().getRoleId() == 2 && ui.checkLogin(ud.getUsername(), ud.getPassword())) {
 
             hs.setAttribute("u", user);
@@ -161,9 +158,7 @@ public class UserController {
 
             return "successlogin";
 
-        }
- 
-        else {
+        } else {
 
             br.rejectValue("username", "error.userName");
 
@@ -177,13 +172,43 @@ public class UserController {
         return "successlogin";
     }
 
+    
     @GetMapping("/getAllUsers")
-    public String getAllUsers(ModelMap mm) {
-        
+    public String getAllUsersUrl(ModelMap mm) {
 
         List<User> allUsers = ui.findAllUsers();
         mm.addAttribute("allusers", allUsers);
-       
+
+        return "allUsers";
+    }
+    
+    @PostMapping("/getAllUsers")
+    public String getAllUsers(ModelMap mm) {
+
+        List<User> allUsers = ui.findAllUsers();
+        mm.addAttribute("allusers", allUsers);
+
+        return "allUsers";
+    }
+
+    @PostMapping("/getAllUsers/{balance}/{games}/{wins}")
+    public String updatedAllUsers(@PathVariable("balance") Integer uptadedFunds, @PathVariable("games") Integer gamesPlayed, @PathVariable("wins") Integer totalWins, ModelMap mm, HttpSession hs) {
+
+        Stats playerStats = new Stats();
+        User user = (User) hs.getAttribute("u");
+        user.setBalance(uptadedFunds);
+
+        int statsId = user.getStats().getStatsId();
+        playerStats.setStatsId(statsId);
+        playerStats.setGames(gamesPlayed);
+        playerStats.setWins(totalWins);
+        playerStats.setUserId(user);
+
+        si.insertStats(playerStats);
+        ui.insertUser(user);
+
+        List<User> allUsers = ui.findAllUsers();
+        mm.addAttribute("allusers", allUsers);
 
         return "allUsers";
     }
@@ -199,46 +224,57 @@ public class UserController {
     @GetMapping("/preupdate/{id}")
     public String preUpdate(@PathVariable("id") int id, ModelMap mm) {
         User u = ui.findUserById(id);
+
         u.setDateofbirth(null);
         mm.addAttribute("user", u);
-        mm.addAttribute("allRoles",ri.getAllRoles());
+        mm.addAttribute("allRoles", ri.getAllRoles());
         return "updateForm";
     }
 
     @PostMapping("/updateUser/{id}")
     public String updateTrainer(@Valid @ModelAttribute("user") User u, @PathVariable("id") int id, BindingResult br, ModelMap mm) {
-            
-        User temp =  ui.findUserById(id);
-        
-             if (!temp.getUsername().equalsIgnoreCase(u.getUsername()) && ui.checkUsername(u.getUsername())) {
 
-                br.rejectValue("username", "error.registerUsername");      
-                u.setDateofbirth(null);
-                mm.addAttribute("allRoles",ri.getAllRoles());
-               return "updateForm";
+        User temp = ui.findUserById(id);
+
+        if (!temp.getUsername().equalsIgnoreCase(u.getUsername()) && ui.checkUsername(u.getUsername())) {
+
+            br.rejectValue("username", "error.registerUsername");
+            u.setDateofbirth(null);
+            mm.addAttribute("allRoles", ri.getAllRoles());
+            return "updateForm";
+        } else if (!temp.getEmail().equalsIgnoreCase(u.getEmail()) && ui.checkEmail(u.getEmail())) {
+
+            br.rejectValue("email", "error.email");
+            u.setDateofbirth(null);
+            mm.addAttribute("allRoles", ri.getAllRoles());
+            return "updateForm";
+        } else {
+
+            u.setId(id);
+            u.setDateofbirth(u.getDateofbirth());
+
+            ui.insertUser(u);
+
+            return "redirect:/getAllUsers";
         }
-        else  if (!temp.getEmail().equalsIgnoreCase(u.getEmail()) && ui.checkEmail(u.getEmail())) {
-
-                br.rejectValue("email", "error.email");
-                u.setDateofbirth(null);
-                 mm.addAttribute("allRoles",ri.getAllRoles());        
-                return "updateForm";
-            }
-      
-          else {   
-             
-        u.setId(id);
-        u.setDateofbirth(u.getDateofbirth());
-      
-        ui.insertUser(u);
-
-        return "redirect:/getAllUsers";
-          }
     }
 
-    @PostMapping("/logout")
-    public String logout(HttpSession hs) {
+    @PostMapping("/logout/{balance}/{games}/{wins}")
+    public String logout(@PathVariable("balance") Integer uptadedFunds, @PathVariable("games") Integer gamesPlayed, @PathVariable("wins") Integer totalWins, HttpSession hs) {
+        Stats playerStats = new Stats();
+        User user = (User) hs.getAttribute("u");
+        user.setBalance(uptadedFunds);
+
+        int statsId = user.getStats().getStatsId();
+        playerStats.setStatsId(statsId);
+        playerStats.setGames(gamesPlayed);
+        playerStats.setWins(totalWins);
+        playerStats.setUserId(user);
+
+        si.insertStats(playerStats);
+        ui.insertUser(user);
         hs.invalidate();
+
         return "redirect:/";
     }
 
@@ -248,19 +284,21 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PostMapping("/gameOver/{games}/{wins}")
-    public String gameOver(@PathVariable("games") Integer gamesPlayed, @PathVariable("wins") Integer totalWins, HttpSession hs) {
+    @PostMapping("/gameOver/{games}/{wins}/{balanceUpdated}")
+    public String gameOver(@PathVariable("games") Integer gamesPlayed, @PathVariable("wins") Integer totalWins, @PathVariable("balanceUpdated") Integer balance , HttpSession hs) {
         Stats playerStats = new Stats();
         User user = (User) hs.getAttribute("u");
-
+        
+        user.setBalance(balance);
         int statsId = user.getStats().getStatsId();
-
+     
         playerStats.setStatsId(statsId);
         playerStats.setGames(gamesPlayed);
         playerStats.setWins(totalWins);
         playerStats.setUserId(user);
 
         si.insertStats(playerStats);
+        ui.insertUser(user);
 
         hs.invalidate();
         return "redirect:/prelogin";

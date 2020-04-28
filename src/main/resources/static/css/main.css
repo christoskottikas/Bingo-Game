@@ -120,18 +120,17 @@ button.accent {
     border-radius: 2px;
     width: 100%;
     max-width: 500px;
-    display: inline-block;
-    margin-top: 42px;
+    display: inline-block;  
     vertical-align: middle;
     position: relative;
     padding: 35px 55px 35px;
-    min-height: 250px;
-    position: absolute;
+    min-height: 50px;
+    position: relative;
     top: 50%;
     left: 0;
     right: 0;
     margin: 0 auto;
-    margin-top: -160px;
+    margin-top: 5%;
 }
 
 .username-page-container .username-submit {
@@ -313,3 +312,5 @@ button.accent {
         font-size: 1.1em;
     }
 }
+
+      

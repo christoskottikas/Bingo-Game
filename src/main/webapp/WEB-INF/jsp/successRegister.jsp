@@ -11,8 +11,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome!</title>
-  <link rel="icon" href="img/icon.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon" />
+    <link rel="icon" href="sitecon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="sitecon.ico" type="image/x-icon" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet"/>
     

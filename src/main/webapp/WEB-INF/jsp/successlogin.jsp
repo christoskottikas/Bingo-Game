@@ -1,69 +1,116 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
         <title>It's time for BINGO!</title>
-        <link rel="stylesheet" href="css/main.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/bingo.css" />
+        <link rel="icon" href="sitecon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="sitecon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="css/main.css"  type="text/css"/>
+        <link rel="stylesheet" href="css/style.css"  type="text/css"/>
+        <link rel="stylesheet" href="css/bingo.css" type="text/css" />
+        <link href="css/slider.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
               integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <script
+            src="https://www.paypal.com/sdk/js?client-id=AZtEuClm2qhx6CWFk-S7sqq4VkJIG-nwCsK0ko-YNQfuY1ow9uRHsed0_fmgAKHWj11J7bjCaXLdbzSU&disable-funding=credit,card&currency=EUR"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+        </script>
+        <style>
+
+        </style>
     </head>
 
     <body id="section1" >
         <noscript>
         <h2>Sorry! Your browser doesn't support Javascript</h2>
         </noscript>
+
+
+
         <div id="dialogoverlay"></div>
         <div id="dialogbox">
             <div>
                 <div id="dialogboxhead"></div>
-                <div id="dialogboxbody"> </div>
+                <div id="dialogboxbody"></div>
                 <div id="dialogboxfoot"></div>
             </div>
         </div>
+        <div id="dialogoverlayPaypal"></div>
+        <div id="dialogboxPaypal" style="margin-left: 7%">
+            <div>
+                <div id="dialogboxheadPaypal"></div>
+                <div id="dialogboxbodyPaypal"></div>
+                <div id="dialogboxfootPaypal"></div>
+            </div>
+        </div>
         <div id="username-page">
-            <div class="username-page-container" id="section3">
+
+            <div class="username-page-container" id="section3" >
+
                 <h1 class="title">Welcome, ${u.firstname} ${u.lastname}</h1><br>
                 <h2>Games: <span id="totalGames">${u.stats.games}</span>   Wins: <span id="totalWins">${u.stats.wins}</span></h2>
                 <form id="usernameForm" name="usernameForm">
                     <div class="form-group">
                         <div>
-                            <h2>Your chat name is: <span id="user">${u.username}</span></h2>
+                            <h2>Chat name : <span id="user">${u.username}</span></h2>
                         </div>
                         <div>
-                            <h3>Your balance is: ${u.balance} <i class="fas fa-coins" style="color:gold"></i></h3>
+                            <h3>Wallet : <span id="balance">${u.balance}</span> &nbsp;<i class="fas fa-coins" style="color:gold"></i></h3>
+                        </div>
+
+
+                        <div>
+                            <h3>Choose your starting bet </h3>
+                            <input type="range" name="rangeInput" min="0" max="1000" value="0" id="price">  
+                            <h3><i class="fas fa-coins" style="color: gold;"></i>&nbsp;<span id="betChosen" ">0</span></h3>
+
+
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" onclick="Card.instance = null;
-                                Card.setupCard();" class="accent username-submit ">Start
+                        <button type="submit" onclick="Card.instance = null;Card.setupCard();" class="accent username-submit">Start
                             Playing</button>
                     </div>
                 </form>
+                <form>
+                   <div class="row">
+                       <div class="col-md-8">
+                           <h4 style="display: inline"><label>Add funds :</label>&nbsp;<i class="fas fa-euro-sign" style="color: gold;"></i></h4>&nbsp;
+                           <input class="form-control" id="paypalDeposit" style="width: 35%; display: inline" type="number" value="0"  min="1" onchange="updatePaypalDeposit()">
+                        </div>
+                     <div style="margin-top: 1%; margin-right: 5%" id="paypal-button-container" ></div>
+                    
+                    </div>
 
-                <form action="/logout" method="POST">
+                </form><br></br>
+                <c:if test="${u.roleID.roleName == 'admin'}">
+                    <form id="adminPage" action="/getAllUsers" method="POST" style="float: left">
+                        <input type="submit" class="btn btn-secondary" value="Admin Page" />
+                    </form>
+                </c:if>
+                <form id="logoutForm" action="/logoutAdmin" method="POST" style="float: right">
                     <input type="submit" class="btn btn-danger" value="Logout" />
                 </form>
-
-
-
 
             </div>
         </div>
 
         <div id="chat-page" class="hidden">
+
             <div class="container-fluid">
                 <div class="row">
 
                     <div class="col-9">
                         <div class="chat-container">
 
-                            <div class="container center"> <h2>Games: <span id="totalGames2">${u.stats.games}</span>   Wins: <span id="totalWins2">${u.stats.wins}</span></h2>
+                            <div class="container center"> <h2>Games: <span id="totalGames2">${u.stats.games}</span>
+                                    Wins: <span id="totalWins2">${u.stats.wins}</span>
+                                    Wallet : <span id="balanceUpdated">${u.balance}</span> &nbsp;
+                                    <i class="fas fa-coins" style="color:gold"></i></h2>
                                 <div class="center">
                                     <svg width="300" height="420">
 
@@ -250,8 +297,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/bingo.js"></script>
-       
+        <script src="js/bingo.js"></script>    
+
     </body>
 
 </html>

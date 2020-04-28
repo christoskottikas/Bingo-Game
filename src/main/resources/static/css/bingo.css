@@ -1,94 +1,96 @@
 /* Make the letter b column class elements (balls or
    squares) have a white border and a pale red
    color. */
-   .b {
+.b {
     fill: #ffa0b0;
     stroke-width: 5;
     stroke: white;
-  }
-  
-  /* Make the letter i column class elements (balls or
-     squares) have a white border and a pale purple
-     color. */
-  .i {
+}
+
+/* Make the letter i column class elements (balls or
+   squares) have a white border and a pale purple
+   color. */
+.i {
     fill: #ffb0ff;
     stroke-width: 5;
     stroke: white;
-  }
-  
-  /* Make the letter n column class elements (balls or
-     squares) have a white border and a pale blue
-     color. */
-  .n {
+}
+
+/* Make the letter n column class elements (balls or
+
+
+   squares) have a white border and a pale blue
+   color. */
+.n {
     fill: #a0b0ff;
     stroke-width: 5;
     stroke: white;
-  }
-  
-  /* Make the letter g column class elements (balls or
-     squares) have a white border and a pale aqua
-     color. */
-  .g {
+}
+
+/* Make the letter g column class elements (balls or
+   squares) have a white border and a pale aqua
+   color. */
+.g {
     fill: #b0ffff;
     stroke-width: 5;
     stroke: white;
-  }
-  
-  
-  .o {
+}
+
+
+.o {
     fill: #b0ffa0;
     stroke-width: 5;
     stroke: white;
-  }
-  
-  
-  .h {
+}
+
+
+.h {
     fill: white;
     stroke-width: 5;
     stroke: white;
-  }
-  
-  
-  .t {
+}
+
+
+.t {
     fill: black;
     font-size: 30px;
-  }
-  
- 
-  .e {
+}
+
+
+.e {
 
     fill: red;
     font-size: 30px;
 
-    
-  }
-  
- 
-  .v {
+
+}
+
+
+.v {
     fill: white;
     font-size: 30px;
 
-  }
-  
-  
-  #left {
+}
+
+
+#left {
     text-align: left;
     width: 100px;
-  }
-  
- 
-  #center {
+}
+
+
+#center {
     text-align: center;
     width: 100px;
-  }
-  
-  
-  #right {
+}
+
+
+#right {
     text-align: right;
     width: 100px;
-  }
-  
-   #dialogoverlay{
+}
+
+#dialogoverlay{
     display: none;
     opacity: .8;
     position: fixed;
@@ -97,16 +99,76 @@
     background: #DBB1BC;
     width: 100%;
     z-index: 10;
-  }
-  #dialogbox{
+}
+#dialogbox{
     display: none;
     position: fixed;
     background: #000;
     border-radius:7px; 
     width:550px;
     z-index: 10;
-  }
-  #dialogbox > div{ background:#FFF; margin:8px; }
-  #dialogbox > div > #dialogboxhead{ background: #8F95D3; font-size:19px; padding:10px; color:#CCC; border: 2px solid; border-color: #000; }
-  #dialogbox > div > #dialogboxbody{ background:#805bf1; padding:20px; color:#FFF; border: 2px solid; border-color: #000;}
-  #dialogbox > div > #dialogboxfoot{ background: #8F95D3; padding:10px; text-align:right; border: 2px solid; border-color: #000;}
+}
+#dialogbox > div{ background:#FFF; margin:8px; }
+#dialogbox > div > #dialogboxhead{ background: #8F95D3; font-size:19px; padding:10px; color:#CCC; border: 2px solid; border-color: #000; }
+#dialogbox > div > #dialogboxbody{ background:#805bf1; padding:20px; color:#FFF; border: 2px solid; border-color: #000;}
+#dialogbox > div > #dialogboxfoot{ background: #8F95D3; padding: 5%;  border: 2px solid; border-color: #000;}
+
+
+#dialogoverlayPaypal{
+    display: none;
+    opacity: .8;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgb(207, 206, 206);
+    width: 100%;
+    z-index: 10;
+}
+#dialogboxPaypal{
+    display: none;
+    position: fixed;
+    background: rgb(5, 5, 5);
+    border-radius:7px; 
+    width:300px;
+    z-index: 10;
+}
+#dialogboxPaypal > div{ background:#FFF; margin:5px;}
+#dialogboxPaypal > div > #dialogboxheadPaypal{ background: rgb(79, 125, 226); font-size:19px; padding:2%; padding-bottom: 5%; color:#CCC; height: 50px; }
+#dialogboxPaypal > div > #dialogboxbodyPaypal{ background:rgb(65, 64, 64); font-size:20px; padding:20px; padding-top: 1%; padding-bottom: 1%; color:#FFF; }
+#dialogboxPaypal > div > #dialogboxfootPaypal{ background: rgb(79, 125, 226); padding:10px; text-align:right; }
+
+
+
+.backgr {
+
+
+    background-image: url('../img/bingobg.png');
+    background-repeat: no-repeat;
+    background-size: cover; }
+
+.mar40 {
+
+    margin-top: 40%;
+}
+
+.mar30 {
+
+    margin-top: 35%;
+}
+
+.backgr1 {
+
+
+    background-image: url('../img/bg2.png');
+    background-repeat: no-repeat;
+    background-size: cover; }
+
+
+.vertical-center {
+    min-height: 100%;  
+    min-height: 100vh; 
+
+    display: flex;
+    align-items: center;
+}
+

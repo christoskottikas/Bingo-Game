@@ -12,12 +12,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bingo Login Page</title>
+        <link rel="icon" href="sitecon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="sitecon.ico" type="image/x-icon" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet"/>
-    
-         <link rel="icon" href="img/icon.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon" />
+
+        <link rel="icon" href="img/icon.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="img/icon.png" type="image/x-icon" />
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
 
@@ -40,7 +42,7 @@
 
                                         <div>
 
-                                <form:form method="POST" action="/login" modelAttribute="user" id="formlogin">
+                                            <form:form method="POST" action="/login" modelAttribute="user" id="formlogin">
                                                 <div class="form-group" >
                                                     <form:label path="username">Username</form:label><br>
                                                     <form:input  type="text" class="form-control" path="username" placeholder="Enter Username" id="username"/> 
@@ -118,9 +120,9 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-       
-        
-         <script src="/js/login.js"></script>
+
+
+        <script src="/js/login.js"></script>
     </body>
 </html> 
 
