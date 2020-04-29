@@ -6,8 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,7 +41,6 @@
 
         </div>
             <h1 class="text-center mt-5 pt-5" >All users</h1>
-            <table class="table table-light table-hover table-striped" id="myTable">
 
                 <div class="mt-2 text-light"> 
 
@@ -60,6 +58,7 @@
                                                         style="background-color: #ffccff"></i></h3>
                     </span>
                 </div>
+            <table class="table table-light table-hover table-striped" id="myTable">
 
 
                 <tr>
@@ -68,7 +67,7 @@
                     <th id="Last name" onclick="sortByString(lastName, lastNameColumn)">Last name</th>
                     <th id="Username" onclick="sortByString(userName, userNameColumn)">Username</th>
                     <th id="Date of birth" onclick="sortByString(dateOfBirth, dateOfBirthColumn)">Date of birth</th>
-                    <th id="Email" onclick="sortByString(playerEmail, playerEmailColumn)">Email</th>
+                    <th id="Email" onclick="sortByString(playerEmail, playerEmailColumn)" class="w-auto">Email</th>
                     <th id="Balance" onclick="sortByInteger(balance, balanceColumn)">Balance</th>
                     <th id="Games Played" onclick="sortByInteger(totalGames, gamesColumn)">Games Played</th>
                     <th id="Games Won" onclick="sortByInteger(totalWins, winsColumn)">Games Won</th>
