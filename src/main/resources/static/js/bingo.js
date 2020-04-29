@@ -90,11 +90,11 @@ Card.drawBall = function () {
 
 
     var balls = Card.balls.length;
-    if (balls < 51) {
+    if (balls < 41) {
 
 
         document.getElementById("center").innerHTML =
-                "" + (50 - balls) + ((balls != 49) ?
+                "" + (40 - balls) + ((balls != 39) ?
                 " balls" : " ball");
         for (var i = 0; i < 4; i++) {
 
@@ -153,7 +153,14 @@ Card.drawBall = function () {
                 var obj =
                         document.getElementById("d" + index + col);
                 obj.classList.remove("v", "t", "e");
-                obj.classList.add("v");
+                obj.classList.add("w");
+
+
+
+                // If the card has at least one bingo, clear
+                // the ball timer and set a timer to handle
+                // the win.
+
 
 
                 if (Card.checkBingo()) {
@@ -164,6 +171,9 @@ Card.drawBall = function () {
             } // if
         } // if
 
+        // Otherwise, if there is still balls being
+        // displayed and we are manually daubing, shift
+        // a ball off the page.
 
     } else if (--Card.clearBalls &&
             !Card.autoDaub) {
@@ -180,7 +190,7 @@ Card.drawBall = function () {
 
 
             document.getElementById("b" + i + "t").classList.
-                    remove("v", "t");
+                    remove("v", "t", "w");
             document.getElementById("b" + i + "t").classList.
                     add(document.getElementById(
                             "b" + (i + 1) + "t").classList.item(0));
@@ -198,10 +208,15 @@ Card.drawBall = function () {
                 add("h");
 
 
+
+
         document.getElementById("b4t").classList.
-                remove("v", "t");
+                remove("v", "t", "w");
         document.getElementById("b4t").classList.
                 add("v");
+
+
+
 
 
     } else {
@@ -229,7 +244,7 @@ Card.checkBingo = function () {
     var rsl = false;
     var bingos =
             [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5];
-    var objs = document.getElementsByClassName("v");
+    var objs = document.getElementsByClassName("w");
     for (var i = 0; i < objs.length; i++) {
 
 
@@ -269,16 +284,21 @@ Card.checkBingo = function () {
 
 Card.daub = function (obj) {
 
+    // Get the current class of the square. Retrive the
+    // number it contains. Verify the number is in the
+    // balls that have been called. Remove all possible
+    // classes from the square having to do with number
+    // color.
 
     var cls = obj.classList.item(0);
     var num = parseInt(obj.innerHTML);
     var index = Card.balls.indexOf(num);
-    obj.classList.remove("v", "t", "e");
+    obj.classList.remove("v", "t", "e", "w");
 
 
     if (index >= 0 || cls == "e")
         if (cls == "t")
-            obj.classList.add("v");
+            obj.classList.add("w");
 
         else
             obj.classList.add("t");
@@ -340,7 +360,7 @@ Card.setupCard = function () {
 
 
     document.getElementById("center").innerHTML =
-            "50 balls";
+            "40 balls";
     var obj;
     if (Card.instance == null)
         obj = new Card();
@@ -372,9 +392,9 @@ Card.setupCard = function () {
                 data.innerHTML = num;
 
 
-            data.classList.remove("t", "v", "e");
+            data.classList.remove("t", "v", "e", "w");
             if (num == 0)
-                data.classList.add("v");
+                data.classList.add("w");
             else
                 data.classList.add("t");
         } // for
@@ -394,7 +414,7 @@ Card.setupCard = function () {
 
 
     Card.time = window.setInterval(Card.drawBall,
-            50);
+            2000);
 }; // setupCard
 
 
@@ -549,13 +569,30 @@ function CustomAlert() {
 
 
 
-        document.write(`<body style="background-color: #DBB1BC">
-                    <p style="font-size:40px;font-weight:bold;color: #B0FFFF;text-align: center">Thanks for playing.</p>
-                    <div style="text-align: center"><form action="/gameOver/${gamesPlayed}/${gamesWon}/${balanceUpdated.innerHTML / 1}" method="Post">
-                    <input type="submit" style="background-color: #034f84;border: none;color: white;padding: 15px 32px;
-                    text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;"
-                    value="Sign out" />
-                    </form></div></body>`);
+        document.write(`<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>Bingo!</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/bingo.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="gradient2">
+  <div class=" h-100 row align-items-center opa7">
+    <div class="col=12 mx-auto">
+      <h1 class="text-center">Thanks for playing!</h1>
+      <div class="p-2 text-center ">
+        <form action="/gameOver/${gamesPlayed}/${gamesWon}/${balanceUpdated.innerHTML / 1}" method="Post">
+          <input type="submit" class="btn btn-lg btn-danger" value="Log Out" />
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>`);
 
         onDisconnected();
     };

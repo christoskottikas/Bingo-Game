@@ -139,28 +139,38 @@ public class UserController {
 
         return "login";
     }
+    
+
 
     @PostMapping("/login")
     public String login(@ModelAttribute("user") UserDto ud, ModelMap mm, HttpSession hs, BindingResult br) {
 
-        User user = ui.findByUsername(ud.getUsername());
 
-        if (user.getRoleID().getRoleId() == 2 && ui.checkLogin(ud.getUsername(), ud.getPassword())) {
+        if (ud.getUsername() != "" && ud.getPassword() != "") {
 
-            hs.setAttribute("u", user);
+                    User user = ui.findByUsername(ud.getUsername());
 
-            return "adminPage";
-        }
+            if (user.getRoleID().getRoleId() == 2 && ui.checkLogin(ud.getUsername(), ud.getPassword())) {
 
-        if (ui.checkLogin(ud.getUsername(), ud.getPassword())) {
+                hs.setAttribute("u", user);
 
-            hs.setAttribute("u", user);
+                return "adminPage";
+            }
 
-            return "successlogin";
+            if (ui.checkLogin(ud.getUsername(), ud.getPassword())) {
 
+                hs.setAttribute("u", user);
+
+                return "successlogin";
+
+            } else {
+
+                br.rejectValue("username", "error.userName");
+
+                return "login";
+            }
         } else {
-
-            br.rejectValue("username", "error.userName");
+              br.rejectValue("username", "error.userName");
 
             return "login";
         }
@@ -172,7 +182,6 @@ public class UserController {
         return "successlogin";
     }
 
-    
     @GetMapping("/getAllUsers")
     public String getAllUsersUrl(ModelMap mm) {
 
@@ -181,7 +190,7 @@ public class UserController {
 
         return "allUsers";
     }
-    
+
     @PostMapping("/getAllUsers")
     public String getAllUsers(ModelMap mm) {
 
@@ -285,20 +294,20 @@ public class UserController {
     }
 
     @PostMapping("/gameOver/{games}/{wins}/{balanceUpdated}")
-    public String gameOver(@PathVariable("games") Integer gamesPlayed, @PathVariable("wins") Integer totalWins, @PathVariable("balanceUpdated") Integer balance , HttpSession hs) {
+    public String gameOver(@PathVariable("games") Integer gamesPlayed, @PathVariable("wins") Integer totalWins, @PathVariable("balanceUpdated") Integer balance, HttpSession hs) {
         Stats playerStats = new Stats();
         User user = (User) hs.getAttribute("u");
-        
+
         user.setBalance(balance);
         int statsId = user.getStats().getStatsId();
-     
+
         playerStats.setStatsId(statsId);
         playerStats.setGames(gamesPlayed);
         playerStats.setWins(totalWins);
         playerStats.setUserId(user);
+        ui.insertUser(user);
 
         si.insertStats(playerStats);
-        ui.insertUser(user);
 
         hs.invalidate();
         return "redirect:/prelogin";

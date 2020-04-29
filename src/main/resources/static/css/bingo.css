@@ -1,77 +1,101 @@
-/* Make the letter b column class elements (balls or
-   squares) have a white border and a pale red
-   color. */
-.b {
-    fill: #ffa0b0;
+
+   .b {
+    fill:#b0ffa0;
+    background-color: #b0ffa0;
     stroke-width: 5;
     stroke: white;
-}
+    border: none;
+    width: 100%;
+    font-size: x-large;
+    
+  }
+    
+  
 
-/* Make the letter i column class elements (balls or
-   squares) have a white border and a pale purple
-   color. */
-.i {
-    fill: #ffb0ff;
+  .i {
+    fill: #B0FFFF;
+    background-color: #B0FFFF;
     stroke-width: 5;
     stroke: white;
-}
+    border: none;
+    width: 100%;
+    font-size: x-large;
+    }  
 
-/* Make the letter n column class elements (balls or
-
-
-   squares) have a white border and a pale blue
-   color. */
-.n {
+  .n {
     fill: #a0b0ff;
+    background-color: #a0b0ff;
     stroke-width: 5;
     stroke: white;
-}
+    border: none;
+    width: 100%;
+    font-size: x-large;
 
-/* Make the letter g column class elements (balls or
-   squares) have a white border and a pale aqua
-   color. */
-.g {
-    fill: #b0ffff;
+    }  
+
+  .g {
+    fill: #FFA0B0;
+    background-color: #FFA0B0;
     stroke-width: 5;
     stroke: white;
-}
+    border: none;
+    width: 100%;
+    font-size: x-large;
 
+    }  
 
-.o {
-    fill: #b0ffa0;
+  .o {
+    fill: #D3C4E3;
+    background-color: #D3C4E3;
     stroke-width: 5;
     stroke: white;
-}
+    border: none;
+    width: 100%;
+    font-size: x-large;
 
+  }  
 
-.h {
+  .h {
     fill: white;
     stroke-width: 5;
     stroke: white;
-}
-
-
-.t {
+    
+  }
+  
+ 
+  .t {
     fill: black;
     font-size: 30px;
-}
+    
+  }
+  
 
+  .e {
 
-.e {
-
-    fill: red;
+    color: white;
     font-size: 30px;
+    
+  }
+  
+  
+  .w {
+    fill:red;
+    background-color: red;
+    font-size: 30px;
+    border-radius: 50%;
+    color: red;
+    background-position:center;
+    position: relative;
+    display: block;
+   
+   
+  }
+  .v{
 
-
-}
-
-
-.v {
     fill: white;
     font-size: 30px;
 
-}
-
+  }
 
 #left {
     text-align: left;
@@ -171,4 +195,184 @@
     display: flex;
     align-items: center;
 }
+.gradient {
 
+background: rgb(143,149,211);
+background: linear-gradient(30deg, rgba(143,149,211,1) 0%, rgba(255,160,176,1) 100%);
+background-size: cover;
+}
+
+.gradient2 {
+
+  background-image: url('../img/bingoBg2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.gradient1 {
+
+  background-image: url('../img/bingoBg1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+
+  
+.btn-3d {
+    position: relative;
+    display: inline-block;
+    font-size: 22px;
+    padding: 40px 40px;
+    color: white;
+    margin: 20px 10px 10px;
+    border-radius: 10px;
+    text-align: center;
+    transition: top .01s linear;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+    stroke: aliceblue;
+}
+
+
+.btn-3db {
+  position: relative;
+  display: inline-block;
+  font-size: 22px;
+  padding: 20px 10px;
+  color: white;
+  margin: 20px 10px 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 120px;
+  transition: top .01s linear;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  stroke: aliceblue;
+}
+.btn-3d.red:hover    {background-color: #b92205;}
+
+.btn-3db.purple:hover {background-color: #a0b0ff;}
+
+
+.btn-3d:active {
+    top: 9px;
+}
+
+
+.btn-3d.red {
+    background-color: #b92205;
+    box-shadow: 0 0 0 1px #c63702 inset,
+        0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 8px 0 0 #C24032,
+        0 8px 0 1px rgba(0,0,0,0.4),
+                0 8px 8px 1px rgba(0,0,0,0.5);
+}
+ .btn-3d.red:active {
+    box-shadow: 0 0 0 1px #c63702 inset,
+                0 0 0 2px rgba(255,255,255,0.15) inset,
+                0 0 0 1px rgba(0,0,0,0.4);
+} 
+
+.btn-3db.purple {
+	background-color: #a0b0ff;
+	box-shadow: 0 0 0 1px #cb99c5 inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 8px 0 0 rgba(189, 142, 183, .7),
+				0 8px 0 1px rgba(0,0,0,.4),
+				0 8px 8px 1px rgba(0,0,0,0.5);
+        
+}
+
+.btn-3db.purple:active {
+	box-shadow: 0 0 0 1px #cb99c5 inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+        0 0 0 1px rgba(0,0,0,0.4);
+}
+
+
+.opa {
+  background: rgba(255,255,255, 0.9);
+}
+
+
+.opa7 {
+  background: rgba(255,255,255, 0.7);
+}
+
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  /* background-color: #f8f8f8; */
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .95em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}

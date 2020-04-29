@@ -15,7 +15,7 @@
         <link href="css/bingo.css" rel="stylesheet" type="text/css"/>
 
     </head>
-    <body class="bg-secondary">
+    <body class="gradient1">
 
 
 

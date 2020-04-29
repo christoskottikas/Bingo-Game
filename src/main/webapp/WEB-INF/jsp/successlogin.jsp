@@ -24,7 +24,7 @@
         </style>
     </head>
 
-    <body id="section1" >
+        <body class="gradient2" >
         <noscript>
         <h2>Sorry! Your browser doesn't support Javascript</h2>
         </noscript>
@@ -49,7 +49,7 @@
         </div>
         <div id="username-page">
 
-            <div class="username-page-container" id="section3" >
+            <div class="username-page-container opacity section3 rounded" style="border-radius: 10%;">
 
                 <h1 class="title">Welcome, ${u.firstname} ${u.lastname}</h1><br>
                 <h2>Games: <span id="totalGames">${u.stats.games}</span>   Wins: <span id="totalWins">${u.stats.wins}</span></h2>
@@ -102,197 +102,310 @@
         <div id="chat-page" class="hidden">
 
             <div class="container-fluid">
-                <div class="row">
+                <div class="row mb-4" id="bingobox">
 
-                    <div class="col-9">
-                        <div class="chat-container">
+                    <div class="col-5 d-flex justify-content-center" >
+                        <div class="chat-container2" >
+              
+                          
+                             <div class="opa"> 
 
-                            <div class="container center"> <h2>Games: <span id="totalGames2">${u.stats.games}</span>
-                                    Wins: <span id="totalWins2">${u.stats.wins}</span>
-                                    Wallet : <span id="balanceUpdated">${u.balance}</span> &nbsp;
-                                    <i class="fas fa-coins" style="color:gold"></i></h2>
-                                <div class="center">
-                                    <svg width="300" height="420">
+                        
+                               
+                                
+                                    <table class="table table-bordered" >
+                                        <thead class="text-xl-center">
+                                          <tr>
+                                           
+                                            <th class="b">B</th>
+                                            <th class="i">I</th>
+                                            <th class="n">N</th>
+                                            <th class="g">G</th>
+                                            <th class="o">O</th>
+                      
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td>
+                                              <button type="button" class="b">
+                                                <text class="t" id="d00" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>
+                                              <td>
+                                                <button type="button" class="i">
+                                                  <text class="t" id="d01" onclick="Card.daub(this);">00</text>
+                                                </button>
+                                              </td>     
+                                              <td>
+                                                <button type="button" class="n" >
+                                                  <text class="t" id="d02" onclick="Card.daub(this);">00</text>
+                                                </button>
+                                              </td>     
+                                              <td>
+                                                <button type="button" class="g" >
+                                                  <text class="t" id="d03" onclick="Card.daub(this);">00</text>
+                                                </button>
+                                              </td>     
+                                              <td>
+                                                <button type="button" class="o"  >
+                                                  <text class="t" id="d04" onclick="Card.daub(this);">00</text>
+                      
+                                                </button>
+                                              </td>
+                              
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                            <button type="button" class="b">
+                                              <text class="t" id="d10" onclick="Card.daub(this);">00</text>
+                                            </button>
+                                          </td>
+                                            <td>
+                                              <button type="button" class="i">
+                                                <text class="t" id="d11" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>     
+                                            <td>
+                                              <button type="button" class="n"  >
+                                                <text class="t" id="d12" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>     
+                                            <td>
+                                              <button type="button" class="g">
+                                                <text class="t" id="d13" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>     
+                                            <td>
+                                              <button type="button" class="o" >
+                                                <text class="t" id="d14" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                            <button type="button" class="b">
+                                              <text class="t" id="d20" onclick="Card.daub(this);">00</text>
+                                            </button>
+                                          </td>
+                                            <td>
+                                              <button type="button" class="i">
+                                                <text class="t" id="d21" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>    
+                                             <td>
+                                              <button type="button" class="n" >
+                                                <text class="t" id="d22" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>     
+                                            <td>
+                                              <button type="button" class="g">
+                                                <text class="t" id="d23" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>     
+                                            <td>
+                                              <button type="button" class="o" >
+                                                <text class="t" id="d24" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                            <button type="button" class="b">
+                                              <text class="t" id="d30" onclick="Card.daub(this);">00</text>
+                                            </button>
+                                          </td>
+                                            <td>
+                                              <button type="button" class="i">
+                                                <text class="t" id="d31" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>    
+                                             <td>
+                                              <button type="button" class="n" >
+                                                <text class="t" id="d32" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>     
+                                            <td>
+                                              <button type="button" class="g">
+                                                <text class="t" id="d33" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>     
+                                            <td>
+                                              <button type="button" class="o" >
+                                                <text class="t" id="d34" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                            <button type="button" class="b">
+                                              <text class="t" id="d40" onclick="Card.daub(this);">00</text>
+                                            </button>
+                                          </td>
+                                            <td>
+                                              <button type="button" class="i">
+                                                <text class="t" id="d41" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>    
+                                             <td>
+                                              <button type="button" class="n" >
+                                                <text class="t" id="d42" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>     
+                                            <td>
+                                              <button type="button" class="g">
+                                                <text class="t" id="d43" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>     
+                                            <td>
+                                              <button type="button" class="o" >
+                                                <text class="t" id="d44" onclick="Card.daub(this);">00</text>
+                                              </button>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
 
-                                    <rect    x="0"    y="0"   class="b" width="60"
-                                             height="60" />
-                                    <text    x="20"   y="40"  class="t" >B</text>
-                                    <rect    x="0"    y="60"  class="b" width="60"
-                                             height="60" />
-                                    <text    x="15"   y="100" class="t" id="d00"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="0"    y="120" class="b" width="60"
-                                             height="60" />
-                                    <text    x="15"   y="160" class="t" id="d10"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="0"    y="180" class="b" width="60"
-                                             height="60" />
-                                    <text    x="15"   y="220" class="t" id="d20"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="0"    y="240" class="b" width="60"
-                                             height="60" />
-                                    <text    x="15"   y="280" class="t" id="d30"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="0"    y="300" class="b" width="60"
-                                             height="60" />
-                                    <text    x="15"   y="340" class="t" id="d40"
-                                             onclick="Card.daub(this);">00</text>
-                                    <circle cx="30"  cy="390" class="h" r="30" id="b0" />
-                                    <text    x="15"   y="400" class="v" id="b0t">00</text>
-
-                                    <!-- I column information -->
-                                    <rect    x="60"   y="0"   class="i" width="60"
-                                             height="60" />
-                                    <text    x="80"   y="40"  class="t" >&nbspI</text>
-                                    <rect    x="60"   y="60"  class="i" width="60"
-                                             height="60" />
-                                    <text    x="75"   y="100" class="t" id="d01"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="60"   y="120" class="i" width="60"
-                                             height="60" />
-                                    <text    x="75"   y="160" class="t" id="d11"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="60"   y="180" class="i" width="60"
-                                             height="60" />
-                                    <text    x="75"   y="220" class="t" id="d21"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="60"   y="240" class="i" width="60"
-                                             height="60" />
-                                    <text    x="75"   y="280" class="t" id="d31"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="60"   y="300" class="i" width="60"
-                                             height="60" />
-                                    <text    x="75"   y="340" class="t" id="d41"
-                                             onclick="Card.daub(this);">00</text>
-                                    <circle cx="90"  cy="390" class="h" id="b1" r="30" />
-                                    <text    x="75"   y="400" class="v" id="b1t">00</text>
-
-                                    <!-- N column information -->
-                                    <rect    x="120"  y="0"   class="n" width="60"
-                                             height="60" />
-                                    <text    x="140"  y="40"  class="t">N</text>
-                                    <rect    x="120"  y="60"  class="n" width="60"
-                                             height="60" />
-                                    <text    x="135"  y="100" class="t" id="d02"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="120"  y="120" class="n" width="60"
-                                             height="60" />
-                                    <text    x="135"  y="160" class="t" id="d12"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="120"  y="180" class="n" width="60"
-                                             height="60" />
-                                    <text    x="135"  y="220" class="t" id="d22"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="120"  y="240" class="n" width="60"
-                                             height="60" />
-                                    <text    x="135"  y="280" class="t" id="d32"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="120"  y="300" class="n" width="60"
-                                             height="60" />
-                                    <text    x="135"  y="340" class="t" id="d42"
-                                             onclick="Card.daub(this);">00</text>
-                                    <circle cx="150" cy="390" class="h" id="b2" r="30" />
-                                    <text    x="135"  y="400" class="v" id="b2t">00</text>
-
-                                    <!-- G column information -->
-                                    <rect    x="180"  y="0"   class="g" width="60"
-                                             height="60" />
-                                    <text    x="200"  y="40"  class="t">G</text>
-                                    <rect    x="180"  y="60"  class="g" width="60"
-                                             height="60" />
-                                    <text    x="195"  y="100" class="t" id="d03"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="180"  y="120" class="g" width="60"
-                                             height="60" />
-                                    <text    x="195"  y="160" class="t" id="d13"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="180"  y="180" class="g" width="60"
-                                             height="60" />
-                                    <text    x="195"  y="220" class="t" id="d23"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="180"  y="240" class="g" width="60"
-                                             height="60" />
-                                    <text    x="195"  y="280" class="t" id="d33"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="180"  y="300" class="g" width="60"
-                                             height="60" />
-                                    <text    x="195"  y="340" class="t" id="d43"
-                                             onclick="Card.daub(this);">00</text>
-                                    <circle cx="210" cy="390" class="h" id="b3" r="30" />
-                                    <text    x="195"  y="400" class="v" id="b3t">00</text>
-
-                                    <!-- O column information -->
-                                    <rect    x="240"  y="0"   class="o" width="60"
-                                             height="60" />
-                                    <text    x="260"  y="40"  class="t">O</text>
-                                    <rect    x="240"  y="60"  class="o" width="60"
-                                             height="60" />
-                                    <text    x="255"  y="100" class="t" id="d04"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="240"  y="120" class="o" width="60"
-                                             height="60" />
-                                    <text    x="255"  y="160" class="t" id="d14"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="240"  y="180" class="o" width="60"
-                                             height="60" />
-                                    <text    x="255"  y="220" class="t" id="d24"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="240"  y="240" class="o" width="60"
-                                             height="60" />
-                                    <text    x="255"  y="280" class="t" id="d34"
-                                             onclick="Card.daub(this);">00</text>
-                                    <rect    x="240"  y="300" class="o" width="60"
-                                             height="60" />
-                                    <text    x="255"  y="340" class="t" id="d44"
-                                             onclick="Card.daub(this);">00</text>
-                                    <circle cx="270" cy="390" class="h" id="b4" r="30" />
-                                    <text    x="255"  y="400" class="v" id="b4t">00</text>
-                                    </svg>
+                                    </div>
                                 </div>  
                             </div>
 
-                            <table>
-                                <tr>
-                                    <td id="left">
-                                        <input type="button" value="BINGO"
-                                               onclick="Card.bingo();"/>
-                                    </td>
-                                    <td id="center"></td>
-                                    <td id="right">
-                                        <input type="button" value="Manual" id="daub"
-                                               onclick="Card.toggleDaub(this);"/>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="col-2">
-                        <div class="chat-container" id="section2">
-                            <div class="chat-header">
-                                <h2>Bingo Global Chat Box</h2>
-                            </div>
-                            <div class="connecting">Connecting...</div>
-                            <ul id="messageArea">
 
-                            </ul>
-                            <form id="messageForm" name="messageForm" nameform="messageForm">
-                                <div class="form-group">
-                                    <div class="input-group clearfix">
-                                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off"
-                                               class="form-control" />
-                                        <button type="submit" class="primary">Send</button>
-                                    </div>
+
+                            <!-- Bingo Button -->
+
+                            <div class="col-2 d-flex justify-content-center mt-4">
+
+
+                                <div class="d-flex align-items-center" >
+                                  
+                                 <input type="button" class=" red btn-3d " value="BINGO!"  id="bingobutton" onclick="Card.bingo(); "  />
+                      
+                                 
                                 </div>
-                            </form>
+                              </div>
 
 
+                               <!-- Chat Container -->
 
+                              <div class="col-5 d-flex justify-content-center" >
+                                <div class="d-flex align-items-end">
+                                <div class="chat-container opa rounded" >
+                      
+                                  <div class="chat-header" style="color:black;">
+                                    <h2>Bingo Global Chat Box</h2>
+                                  </div>
+                                  <div class="connecting">Connecting...</div>
+                                  <ul id="messageArea">
+                      
+                                  </ul>
+                                  <form id="messageForm" name="messageForm" nameform="messageForm">
+                                    <div class="form-group">
+                                      <div class="input-group clearfix">
+                                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off"
+                                          class="form-control" />
+                                        <button type="submit" class="primary">Send</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                  </div>
+                                </div>
+                      
+                      
+                                
+                      
+                              </div>
 
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
+        
+                <div class="row mt-5 opa" id="menurow">
+                    <div class="col-5 d-flex justify-content-center">
+            
+            
+                      
+                      <svg width="630" height="200">
+                        <circle cx="100" cy="100" class="h" r="50" id="b0" />
+                        <circle cx="100" cy="100" r="30" stroke="white" stroke-width="3" fill="none" />
+                        <circle cx="100"  cy="100" class="h" r="23" />          
+                        <text x="85" y="110" class="v" id="b0t"></text>
+            
+                        <circle cx="210" cy="100" class="h" id="b1" r="50" />
+                        <circle cx="210" cy="100" r="30" stroke="white" stroke-width="3" fill="none" />
+                        <circle cx="210"  cy="100" class="h" r="23" />    
+                        <text x="195" y="110" class="v" id="b1t"></text>
+            
+                        <circle cx="320" cy="100" class="h" id="b2" r="50" />
+                        <circle cx="320" cy="100" r="30" stroke="white" stroke-width="3" fill="none" />
+                        <circle cx="320"  cy="100" class="h" r="23" />    
+                        <text x="305" y="110" class="v" id="b2t"></text>
+            
+            
+                        <circle cx="430" cy="100" class="h" id="b3" r="50" />
+                        <circle cx="430" cy="100" r="30" stroke="white" stroke-width="3" fill="none" />
+                        <circle cx="430"  cy="100" class="h" r="22" />    
+                        <text x="415" y="110" class="v" id="b3t"></text>
+            
+            
+                        <circle cx="550" cy="100" class="h" id="b4" r="60" />
+                        <circle cx="550" cy="100" r="40" stroke="white" stroke-width="5" fill="none" />
+                        <circle cx="550"  cy="100" class="h" r="30" />    
+                        <text x="535" y="110" class="v" id="b4t"></text>
+            
+                      </svg>
+            
+                      
+                    </div>
+            
+            
+            
+                    <div class="col-2 d-flex justify-content-center">
+            
+            
+            
+            
+                      <div class="d-flex align-items-center">
+            
+                        <span id="center" class="btn btn-lg" style="color: red;"></span>
+            
+            
+                      </div>
+            
+            
+            
+            
+            
+                    </div>
+            
+                    <div class="col-5 d-flex justify-content-start">
+            
+                  
+            
+                      <div class="d-flex align-items-center text-center">
+                
+            
+                        <input type="button" value="Manual" id="daub" class=" btn-3db purple"
+                          onclick="Card.toggleDaub(this);" /> </div>
+                          
+                          <div class="d-flex align-items-center ml-5">
+            
+                              <h3 style="color: #a0b0ff;">Games: <span id="totalGames2">${u.stats.games}</span>  <br>
+                                  Wins: <span id="totalWins2">${u.stats.wins}</span> <br>
+                        
+                            Wallet : <span id="balanceUpdated">${u.balance}</span> &nbsp;
+                            <i class="fas fa-coins" style="color:gold"></i></h3>
+                            </div>
+            
+            
+                      
+                      
+
+                    </div>
+            
+            
+                  </div>
+            
+                </div>
+              </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>

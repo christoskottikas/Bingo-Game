@@ -26,7 +26,7 @@
             }
         </style>
     </head>
-    <body onload="hideAdminDeleteUrl()" class="backgr1">    
+    <body onload="hideAdminDeleteUrl()" class="gradient">    
 
         <div class="container-fluid">
             <div class="mt-4">
