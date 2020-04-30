@@ -141,14 +141,13 @@ public class UserController {
     }
     
 
-
     @PostMapping("/login")
     public String login(@ModelAttribute("user") UserDto ud, ModelMap mm, HttpSession hs, BindingResult br) {
 
+        User user = ui.findByUsername(ud.getUsername());
 
-        if (ud.getUsername() != "" && ud.getPassword() != "") {
 
-                    User user = ui.findByUsername(ud.getUsername());
+             if (user != null){
 
             if (user.getRoleID().getRoleId() == 2 && ui.checkLogin(ud.getUsername(), ud.getPassword())) {
 
@@ -157,7 +156,7 @@ public class UserController {
                 return "adminPage";
             }
 
-            if (ui.checkLogin(ud.getUsername(), ud.getPassword())) {
+           else if (ui.checkLogin(ud.getUsername(), ud.getPassword())) {
 
                 hs.setAttribute("u", user);
 
@@ -165,7 +164,7 @@ public class UserController {
 
             } else {
 
-                br.rejectValue("username", "error.userName");
+                br.rejectValue("password", "error.loginPassword");
 
                 return "login";
             }

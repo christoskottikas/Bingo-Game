@@ -283,6 +283,9 @@
                       
                                  
                                 </div>
+                                
+
+                                
                               </div>
 
 
@@ -360,7 +363,7 @@
             
                     <div class="col-2 d-flex justify-content-center">
             
-            
+         
             
             
                       <div class="d-flex align-items-center">
@@ -369,7 +372,7 @@
             
             
                       </div>
-            
+    
             
             
             
@@ -378,7 +381,7 @@
             
                     <div class="col-5 d-flex justify-content-start">
             
-                  
+                      
             
                       <div class="d-flex align-items-center text-center">
                 
@@ -400,10 +403,22 @@
                       
 
                     </div>
+                            
+    
+
             
             
                   </div>
             
+                            
+                            
+         <div class=" col-12 d-flex justify-content-center mt-4">
+               <audio controls autoplay="autoplay" loop="loop">
+                              <source src="../Solve The Puzzle.ogg" type="audio/ogg">
+                             
+                              Your browser does not support the audio element.
+                            </audio>
+                                                </div>
                 </div>
               </div>
 

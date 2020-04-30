@@ -8,15 +8,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bingo Login Page</title>
         <link rel="icon" href="sitecon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="sitecon.ico" type="image/x-icon" />
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet"/>
     </head>
 
 
@@ -41,14 +43,15 @@
                                             <form:form method="POST" action="/login" modelAttribute="user" id="formlogin">
                                                 <div class="form-group" >
                                                     <form:label path="username">Username</form:label><br>
-                                                    <form:input  type="text" class="form-control" path="username" placeholder="Enter Username" id="username"/> 
+                                                    <form:input  type="text" class="form-control" path="username" placeholder="Enter Username" id="username" required="required"/> 
                                                     <form:errors class="error" path="username"/>
                                                 </div>
                                                 <div class="form-group">
                                                     <form:label path="password">Password</form:label><br>
-                                                    <form:input id="password-field" type="password" class="form-control" path="password" placeholder="Password" /> 
-                                                    <span style="color: #333" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password">
-                                                        <form:errors path="password"/>
+                                                    <form:input id="password-field" type="password" class="form-control" path="password" placeholder="Password" required="required" minlength="5" /> 
+                                                    <form:errors path="password" class="error"/>
+                                                      <span style="color: #333" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password">
+                                                     
                                                 </div>
                                                 <div class="form-check">
                                                     <input type="checkbox" class="form-check-input" id="rememberMe" value="lsRememberMe">

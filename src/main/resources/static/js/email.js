@@ -7,8 +7,7 @@ document.querySelector('#reg').addEventListener('click', () => {
         to: mail,
         subject: "Notification"
     });
-   console.log(data);
-   alert(data);
+
     $.ajax({
         headers: {
             'Accept': 'application/json',
